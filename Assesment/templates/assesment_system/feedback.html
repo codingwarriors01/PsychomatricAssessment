@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+
+<style>
+    body {
+  font-family: Roboto;
+  color: #3D3D3D;
+  background: #eee;
+}
+
+.feedback {
+  box-sizing: border-box;
+  width: 85%;
+  max-width: 300px;
+  background: #fff;
+  padding: 30px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.feedback > h2 {
+  margin-top: 0;
+}
+
+.feedback .btn {
+  font-family: Roboto;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 7px 15px;
+  margin-top: 30px;
+  background-color: #fff;
+  border: none;
+  color: #3D3D3D;
+  padding: 13px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 30ms ease-in-out;
+}
+
+.feedback .btn:focus {
+  outline: none;
+}
+
+.feedback .btn:active {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)!important;
+}
+
+.feedback .btn:hover {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.feedback .stars {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  position: relative;
+  margin-top: 5px;
+}
+
+.star {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.star svg {
+  width: 50px !important;
+  height: 50px !important;
+  fill: #dddddd;
+  transition: all 75ms ease-in-out;
+}
+
+.star .left,
+.star .right {
+  position: absolute;
+  width: 25px;
+  height: 50px;
+  top: 0;
+  overflow: hidden;
+}
+
+.star .left {
+  left: 0;
+}
+
+.star .right {
+  right: 0;
+}
+
+.star-half.clicked > svg {
+  fill: #FDD835!important;
+}
+
+.star-half.hover > svg {
+  fill: #FFF176;
+}
+
+.star-half.hoverImportant > svg {
+  fill: #FFF176!important;
+}
+</style>
+
+<script type="text/javascript">
+    $(function() {
+
+var starHalf = $('.star-half');
+var score = null;
+
+starHalf.hover(function() {
+
+  var el = $(this);
+  var starId = el.attr('data-star-id');
+
+  for (var x = 1; x <= starId; x++) {
+    $('.star-half[data-star-id=' + x + ']').addClass('hover');
+  }
+
+  for (var i = (parseInt(starId) + 1); i <= score; i++) {
+    $('.star-half[data-star-id=' + i + ']').addClass('hoverImportant');
+  }
+
+}, function() {
+
+  $('.star-half').removeClass('hover hoverImportant');
+
+});
+
+starHalf.on('click', function() {
+
+  var el = $(this);
+  var starId = el.attr('data-star-id');
+
+  score = starId;
+  
+
+  starHalf.removeClass('hover hoverImportant');
+
+  for (var x = 1; x <= starId; x++) {
+    $('.star-half[data-star-id=' + x + ']').addClass('clicked');
+  }
+
+  for (var i = (parseInt(starId) + 1); i <= 10; i++) {
+    $('.star-half[data-star-id=' + i + ']').removeClass('clicked');
+  }
+
+
+
+
+});
+});
+</script>
+
+
+</head>
+<body>
+    <div class="feedback">
+        <h2>Feedback</h2>
+        <div class="stars">
+          <div class="star">
+                <div class="left star-half" class="rajat" data-star-id="1">
+                <svg class="left" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+                <div class="right star-half" class="rajat"  data-star-id="2">
+                <svg class="right" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+            </div>
+            <div class="star">
+                <div class="left star-half"  class="rajat" data-star-id="3">
+                <svg class="left" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+                <div class="right star-half" class="rajat" data-star-id="4">
+                <svg class="right" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+            </div>
+            <div class="star">
+                <div class="left star-half" class="rajat"  data-star-id="5">
+                <svg class="left" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+                <div class="right star-half" class="rajat"  data-star-id="6">
+                <svg class="right" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+            </div>
+            <div class="star">
+                <div class="left star-half"  class="rajat" data-star-id="7">
+                <svg class="left" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+                <div class="right star-half" class="rajat" data-star-id="8">
+                <svg class="right" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+            </div>
+            <div class="star">
+                <div class="left star-half" class="rajat" data-star-id="9">
+                <svg class="left" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+                <div class="right star-half" class="rajat"  data-star-id="10">
+                <svg class="right" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        </svg>
+                </div>
+           </div>
+        </div>
+                <button type='button'  class="submit  btn">Submit</button>
+    </div>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+          var amp={}
+                function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = cookies[i].trim();
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                var csrftoken = getCookie('csrftoken');
+
+                    var starHalf = $('.star-half');
+                    
+                    starHalf.on('click', function() {
+
+                            var el = $(this);
+                            var starId = el.attr('data-star-id');
+
+                            
+                            amp={
+                              'user_feedback':parseInt(starId),
+                            }
+                            console.log(amp)
+                    });
+
+                    $(document).on('click', '.submit', function (){
+                      console.log(amp)
+                            
+                                $.ajax({
+                                    type:'POST',
+                                    url:"http://127.0.0.1:8000/api/UserFeedback",
+                                    data:JSON.stringify(amp),
+                                    async:true,
+                                    dataType:'json',
+                                    success:function(response){
+                                        
+                                        console.log(response)
+                                    },
+                                    error: (error) => {
+                                      console.log(error);
+                                    }
+                                });
+                      });
+       
+                $(function(){
+                $(".submit").click(function(){
+                      
+                        var go_to_url ="http://127.0.0.1:8000/indexpage"; 
+                        window.open(go_to_url, '_blank');
+                          
+                    });
+                });
+       
+       
+       
+       
+       
+       
+       
+         });
+    </script>
+
+
+</body>
+</html>
