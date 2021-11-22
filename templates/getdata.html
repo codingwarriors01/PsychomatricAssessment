@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>students api</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ </head>
+ <!-- <div id="form" style="margin-top: 100px">
+    <p><label> First name :</label> <span id="user"></span></p>
+    <p><label> Last name :</label> <span id="first"></span></p>
+    <p><label> age :</label> <span id="last"></span></p>
+    <p><label> gender : </label> <span id="email"></span></p> 
+    <p><label> gender : </label> <span id="password"></span></p> 
+    <p><label> gender : </label> <span id="contact_no"></span></p> 
+ </div> -->
+ <h1 class="text-center">REGISTERED Candidate</h1>
+ <hr style="color: black; width:50%; margin-left:300px">
+ <table class="table table-bordered"id="form">
+    <thead>
+      <tr class="table-success">
+        
+        <th  class="table-success" scope="col" id=user>Username</th>
+        <th class="table-success" scope="col" id=first>Firstname</th>
+        <th  class="table-success" scope="col" id=last>Lastname</th>
+        <th  class="table-success" scope="col" id=email>Email</th>
+        <th class="table-success" scope="col" id=password>Contact no</th>
+        
+
+        </tr>
+    </thead>
+<body>
+<script>
+    buildList()
+
+    function buildList(){
+        var wrapper = document.getElementById('form')
+        //wrapper.innerHTML = ''
+
+
+
+        var url = 'http://127.0.0.1:8000/api/Candidateapi/'
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            console.log('Data:', data)
+
+            var list = data
+            for (var i in list){
+
+
+                try{
+                    document.getElementById(`data-row-${i}`).remove()
+                }catch(err){
+
+                }
+        
+
+
+                var user = `<span class="title">${list[i].username}</span>`
+                var first = `<span class="title">${list[i].first_name}</span>`
+                var last = `<span class="title">${list[i].last_name}</span>`
+                var email = `<span class="title">${list[i].email}</span>`
+                var password = `<span class="title">${list[i].password}</span>`
+                var contact_no = `<span class="title">${list[i].contact_no}</span>`
+
+
+                var item = `
+                <tr>
+                  
+                    <td>${user}</td> 
+                    <td>${first}</td> 
+                    <td>${last}</td> 
+                     <td>${email}</td>
+                     <td>${contact_no}</td>
+                  
+ 
+                    <td>
+                    </tr>
+
+ 
+
+
+
+            `
+            wrapper.innerHTML += item
+
+        }
+    })
+}
+
+            
+
+
+
+            
+
+
+
+    
+</script>
+
+</body>
+</html>
