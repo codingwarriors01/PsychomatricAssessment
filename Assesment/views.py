@@ -17,9 +17,9 @@ from rest_framework import response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 from rest_framework.response import Response
-from .serializers import  AptitudeSerializer, CandidateloginSerializer,User_Aptitude_mapper_Serializer,User_Feedback_Serializer,CandidateSerializer,Result_Serializer,VerbalSerializer,User_Verbal_mapper_Serializer,ReasoningSerializer,User_Reasoning_mapper_Serializer
+from .serializers import  *
 from rest_framework.views import APIView
-from .models import  Aptitude,User_Aptitude_mapper,Candidate,user_feedback,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper
+from .models import *
 from rest_framework import status
 from django.core import serializers as core_serializers
 from django.core import serializers
@@ -88,9 +88,16 @@ class  ApptitudeList(APIView):
         serialized = AptitudeSerializer(tasks, many=True)
         return Response(serialized.data)
 
+# class  Show(GenericAPIView,RetrieveModelMixin):
+#     queryset=Aptitude.objects.all()
+#     serializer_class=AptitudeSerializer
+
+#     def get(self,request,*args,**kwargs):
+#         return self.retrieve(request,*args,**kwargs)
+
 class  Show(GenericAPIView,RetrieveModelMixin):
-    queryset=Aptitude.objects.all()
-    serializer_class=AptitudeSerializer
+    queryset=Reasoning.objects.all()
+    serializer_class=ReasoningSerializer
 
     def get(self,request,*args,**kwargs):
         return self.retrieve(request,*args,**kwargs)
@@ -372,4 +379,47 @@ class CandidateDestroy(GenericAPIView, DestroyModelMixin):
 
      def delete(self, request, *args, **kwargs):
       return self.destroy(request, *args, **kwargs)
+
+class UserFeedackList(APIView):
+    def get(self,request):
+        tasks=user_feedback.objects.all()
+        serailzed= user_feedback_Serializer(tasks,many=True)
+        return Response(serailzed.data)  
+
+class RegisterListView(APIView):
+    def get(self, request):
+        tasks = Register.objects.all()
+        serialized = RegisterSerializer(tasks, many=True)
+        return Response(serialized.data)    
+
+class RegisterCreateApi(generics.CreateAPIView):
+    queryset = Register.objects.all()
+    serializer_class = RegisterSerializer
+
+class RegisterUpdateApi(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Register.objects.all()
+    serializer_class = RegisterSerializer   
+
+def index(request):
+    return render(request, 'assesment_system/index.html')     
+
+def ResultView(request):
+    correct = 0
+    incorrect=0
+    res = User_Reasoning_mapper.objects.all()
+    for i in res:
+        question_id = i.question_id
+        user_answer = i.user_answer
+        res2 = Reasoning.objects.filter(question_id=question_id)
+        for j in res2:
+            answer = j.answer
+        if user_answer == answer:
+            correct = correct+1
+        else:
+            incorrect = incorrect+1
+    print("Your " +str(correct)+ " answer is correct and " +str(incorrect)+ " answer is incorrect.")
+    result = Result(correct_answer = correct, incorrect_answer = incorrect)
+    result.save()
+    return render(request, 'result.html')                
+
 

@@ -67,3 +67,9 @@ class Result(models.Model):
   # uid=models.ForeignKey(Candidate,on_delete=models.CASCADE)
   user_cresult=models.CharField(max_length=10)
   user_wresult=models.CharField(max_length=10)
+
+class Register(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    mob = models.IntegerField()
