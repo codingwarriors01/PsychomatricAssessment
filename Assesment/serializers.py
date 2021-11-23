@@ -1,7 +1,7 @@
 from typing import ClassVar
 from django.db.models import fields
 from rest_framework import serializers
-from .models import  Aptitude, User_Aptitude_mapper,user_feedback,Candidate,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper
+from .models import  *
 
 
 
@@ -101,6 +101,17 @@ class User_Reasoning_mapper_Serializer(serializers.ModelSerializer):
     def create(self, validated_data):
         reasoning=User_Reasoning_mapper.objects.create(**validated_data)
         return reasoning
+
+class user_feedback_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model= user_feedback
+        feilds='__all__'
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Register
+        fields='__all__'        
+
 
 
 
