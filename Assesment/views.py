@@ -159,6 +159,56 @@ class User_Verbal_mapperList(APIView):
         return Response(serialized.data)
 
 
+class Self_developmentAPI(generics.GenericAPIView):
+    serializer_class= Self_developmentSerializer
+    def post(self,request,*args,**kwargs):
+        serializer=self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        verbal= serializer.save()
+        return Response({
+            "self_development":Self_developmentSerializer(self_development,context=self.get_serializer_context()).data
+        })  
+
+class Self_developmentCreateApi(generics.CreateAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+
+class Self_developmentShow(GenericAPIView,RetrieveModelMixin):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+     def get(self,request,*args,**kwargs):
+         return self.retrieve(request,*args,**kwargs)
+
+
+
+
+class Self_developmentUpdateApi(generics.RetrieveUpdateDestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+class Self_developmentDeleteApi(generics.DestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+
+class User_selfdevelop_mapperAPI(generics.GenericAPIView):    
+    serializer_class = User_Verbal_mapper_Serializer
+    def post(self, request):      
+        serializer = self.get_serializer(data=request.data,many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response()
+
+class User_selfdevelop_mapperList(APIView): 
+    def get(self, request):
+        tasks = User_selfdevelop_mapper.objects.all()
+        serialized = User_selfdevelop_mapperSerializer(tasks, many=True)
+        return Response(serialized.data)     
+
+
+
 #by gaurav
 
 class ReasoningAPI(generics.GenericAPIView):
