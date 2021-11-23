@@ -41,6 +41,20 @@ class User_Verbal_mapper(models.Model):
     user_answer=models.CharField(max_length=100)
 
 
+class Self_development(models.Model):
+    self_qid=models.AutoField(primary_key=True)
+    self_question=models.CharField(max_length=500)
+    self_option1=models.CharField(max_length=100)
+    self_option2=models.CharField(max_length=100)
+    self_option3=models.CharField(max_length=100)
+    self_option4=models.CharField(max_length=100)
+    self_option5=models.CharField(max_length=100)
+    self_option6=models.CharField(max_length=100)
+    
+
+class User_selfdevelop_mapper(models.Model):    
+    selfuser_ans=models.CharField(max_length=100)
+    self_qid=models.CharField(max_length=100)
 
 #by gaurav
 class Reasoning(models.Model):
@@ -67,3 +81,9 @@ class Result(models.Model):
   # uid=models.ForeignKey(Candidate,on_delete=models.CASCADE)
   user_cresult=models.CharField(max_length=10)
   user_wresult=models.CharField(max_length=10)
+
+class Register(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    mob = models.IntegerField()
