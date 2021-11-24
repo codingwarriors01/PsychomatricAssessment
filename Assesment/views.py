@@ -1,3 +1,5 @@
+from json.decoder import JSONDecoder
+from json.encoder import JSONEncoder
 
 from django.shortcuts import render
 
@@ -17,6 +19,9 @@ from rest_framework import response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 from rest_framework.response import Response
+from .serializers import  AptitudeSerializer, CandidateloginSerializer,User_Aptitude_mapper_Serializer,User_Feedback_Serializer,CandidateSerializer,Result_Serializer,VerbalSerializer,User_Verbal_mapper_Serializer,ReasoningSerializer,User_Reasoning_mapper_Serializer
+from rest_framework.views import APIView
+from .models import  Aptitude,User_Aptitude_mapper,Candidate,user_feedback,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper
 from .serializers import  *
 from rest_framework.views import APIView
 from .models import *
@@ -37,8 +42,15 @@ def basepage(request):
 
 
 class CandidateRegister(generics.GenericAPIView):
-     serializer_class = CandidateSerializer
-     def post(self,request):
+    serializer_class = CandidateSerializer
+    def post(self, request): 
+        requestdata=json.loads(request.body)   
+        serializer = self.get_serializer(data=requestdata)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)    
+    serializer_class = CandidateSerializer
+    def post(self,request):
         serializer = CandidateSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
@@ -88,19 +100,19 @@ class  ApptitudeList(APIView):
         serialized = AptitudeSerializer(tasks, many=True)
         return Response(serialized.data)
 
-# class  Show(GenericAPIView,RetrieveModelMixin):
-#     queryset=Aptitude.objects.all()
-#     serializer_class=AptitudeSerializer
-
-#     def get(self,request,*args,**kwargs):
-#         return self.retrieve(request,*args,**kwargs)
-
 class  Show(GenericAPIView,RetrieveModelMixin):
-    queryset=Reasoning.objects.all()
-    serializer_class=ReasoningSerializer
+    queryset=Aptitude.objects.all()
+    serializer_class=AptitudeSerializer
 
     def get(self,request,*args,**kwargs):
         return self.retrieve(request,*args,**kwargs)
+
+# class  GauravShow(GenericAPIView,RetrieveModelMixin):
+#     queryset=Reasoning.objects.all()
+#     serializer_class=ReasoningSerializer
+
+#     def get(self,request,*args,**kwargs):
+#         return self.retrieve(request,*args,**kwargs)
 
       
 
@@ -164,7 +176,7 @@ class Self_developmentAPI(generics.GenericAPIView):
     def post(self,request,*args,**kwargs):
         serializer=self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        verbal= serializer.save()
+        self_development= serializer.save()
         return Response({
             "self_development":Self_developmentSerializer(self_development,context=self.get_serializer_context()).data
         })  
@@ -399,7 +411,8 @@ class UserLoginView(generics.GenericAPIView):
             return HttpResponse("wrong username or password")   
 
 def ExamDashboard(request):
-    return render(request,'assesment_system/exam_dashboard.html')
+    return render(request,'assesment_system/exam_dashboard.html')            
+    # return render(request,'assesment_system/exam_dashboard.html')
 
 class CandidateList(GenericAPIView, ListModelMixin):
      queryset = Candidate.objects.all()

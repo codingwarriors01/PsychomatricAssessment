@@ -40,6 +40,7 @@ class User_Verbal_mapper(models.Model):
     q_id=models.CharField(max_length=100)
     user_answer=models.CharField(max_length=100)
 
+
 class Self_development(models.Model):
     self_qid=models.AutoField(primary_key=True)
     self_question=models.CharField(max_length=500)
