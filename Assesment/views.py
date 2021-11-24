@@ -412,7 +412,7 @@ class UserLoginView(generics.GenericAPIView):
 
 def ExamDashboard(request):
     return render(request,'assesment_system/exam_dashboard.html')            
-    return render(request,'assesment_system/exam_dashboard.html')
+    # return render(request,'assesment_system/exam_dashboard.html')
 
 class CandidateList(GenericAPIView, ListModelMixin):
      queryset = Candidate.objects.all()
