@@ -52,9 +52,10 @@ class Self_development(models.Model):
     self_option6=models.CharField(max_length=100)
     
 
-class User_selfdevelop_mapper(models.Model):    
-    selfuser_ans=models.CharField(max_length=100)
-    self_qid=models.CharField(max_length=100)
+class Self_development_User_mapper(models.Model):
+    Sq_id=models.CharField(max_length=100)
+    Suser_answer=models.CharField(max_length=100)
+
 
 #by gaurav
 class Reasoning(models.Model):

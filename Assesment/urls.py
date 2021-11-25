@@ -30,7 +30,7 @@ urlpatterns = [
 	path('User_Aptitude_mapperList', User_Aptitude_mapperList.as_view(), name='User_Aptitude_mapperList'),
 	path('checkanswer',views.checkanswer,name='checkanswer'),
 
-#by Aman
+
 	path('Verbal',VerbalAPI.as_view(),name='Verbal'),
     path('profileList',ProfileList.as_view(),name='Verbals'),
     path('questions',views.homepage1, name='questions'),
@@ -47,13 +47,18 @@ urlpatterns = [
 	# path('api/UserFeedbackList', UserFeedackList.as_view(), name='UserFeedbackList'),
 	# path('userfeedback/',views.userfeedback,name="userfeedback"),
     path('result',views.ResultView,name= 'result'),
-    path('Self_development',Self_developmentAPI.as_view(),name='Self_development'),
-    path('add', Self_developmentCreateApi.as_view(), name='add'),
+    path('Self_add', Self_developmentCreateApi.as_view(), name='Self_add'),
+    # path('USer_Self_development_mapper_Result', User_selfdevelop_mapperAPI.as_view(), name='USer_Self_development_mapper_Result'),
+
     path('self_update/<int:pk>',Self_developmentUpdateApi.as_view(),name='self_update'),
     path('erase/<int:pk>',Self_developmentDeleteApi.as_view(),name='erase'),
     path('displayself_dev/<int:pk>',Self_developmentShow.as_view(),name='displayself_dev'),
 
-#by Gaurav
+    path('developmentselflist',Self_development_User_mapperList.as_view(),name='developmentselflist'),
+	path('SelfdevelopeUser', Self_development_User_mapperApi.as_view(), name='SelfdevelopeUser'),
+	path('SelfdevelopeUserDelete/<int:pk>', Self_development_User_mapperDeleteApi.as_view(), name='SelfdevelopeUserDelete'),
+
+
     path('reasoning', ReasoningAPI.as_view(), name='reasoning'),
 	path('questionsList', views.QuestionPage,name='questionsList'),
 	path('result', views.Resultlist, name='result'),
@@ -61,7 +66,7 @@ urlpatterns = [
 	path('login/',UserLoginView.as_view()),	         # by pratiksha 
     # path('profilelist', views.ProfileList.as_view(), name='reasoning'),
     # path('create', ReasoningCreateApi.as_view(), name='create'),
-    # path('show/<int:pk>',Show.as_view(), name='show'),
+    path('ReasoningShow/<int:pk>',ReasoningShow.as_view(), name='ReasoningShow'),
     # path('update/<int:pk>',ReasoningUpdateApi.as_view(), name='update'),
     path('User_Reasoning_mapperAPI' , User_Reasoning_mapperAPI.as_view(), name= 'User_Reasoning_mapperAPI'),
     path('User_Reasoning_mapperList', User_Reasoning_mapperList.as_view(), name='User_Reasoning_mapperList'),

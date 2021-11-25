@@ -1,7 +1,7 @@
-from typing import ClassVar
-from django.db.models import fields
+# from typing import ClassVar
+# from django.db.models import fields
 from rest_framework import serializers
-from .models import  Aptitude, User_Aptitude_mapper,user_feedback,Candidate,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper
+# from .models import  Aptitude, User_Aptitude_mapper,user_feedback,Candidate,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper,User_Verbal_mapper, Verbal,Candidate,Aptitude,User_Aptitude_mapper,user_feedback,Result
 from .models import  *
 
 
@@ -68,7 +68,7 @@ class VerbalSerializer(serializers.ModelSerializer):
             return verbal
 
 
-#By Aman
+
 class User_Verbal_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
         model=User_Verbal_mapper
@@ -87,15 +87,14 @@ class Self_developmentSerializer(serializers.ModelSerializer):
       self_development=Self_development.objects.create(**validated_data)
       return self_development    
 
-class User_selfdevelop_mapperSerializer(serializers.ModelSerializer):
-    class meta:
-        model=User_selfdevelop_mapper
+class Self_development_User_mapperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Self_development_User_mapper
         fields='__all__'
 
     def create(self,validated_data):
-        user_selfdevelop_mapper=User_selfdevelop_mapper.objects.create(**validated_data)
+        user_selfdevelop_mapper=Self_development_User_mapper.objects.create(**validated_data)
         return user_selfdevelop_mapper
-
 
 
 

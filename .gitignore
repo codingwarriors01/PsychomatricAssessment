@@ -6,4 +6,3 @@ dist/
 .classpath
 bin/
 .idea/
-__pycache__

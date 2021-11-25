@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import './exam_page.css';
 // import NavBar from './header'
 import {Nav, Navbar, NavDropdown, MenuItem,  Tabs, ButtonToolbar, Button, Table, ButtonGroup, Row, Col, Grid, Panel, FormGroup, FormControl, Container} from 'react-bootstrap';
-import QuestionNumber from './question_numbers';
-// import Footer from './footer';
+// import QuestionNumber from './question_numbers';
+import Footer from './footer';
+import VerbalQuestionpaper from './verbalquestion'
 import Questionpaper from './Aptitude';
 import StoreResult from './Aptitude';
+import Questions from './questions';
 import App from './urls';
 import Timer from './timer';
+import SelfdevelopmentQuestions from './Self_development';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { queryAllByDisplayValue } from '@testing-library/dom';
+import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
  export default function Exam(props){
+    let { type } = useParams();
  const [id,setId]=useState(1);
  function updateProps(e){
      if(e.target){
@@ -18,7 +23,15 @@ import { queryAllByDisplayValue } from '@testing-library/dom';
         return;
      }
      setId(e);
+     
  }
+ useEffect(()=>{
+    //  alert('asf')
+    console.log(type)
+
+});
+
+
      return(
      <>
      
@@ -129,8 +142,12 @@ import { queryAllByDisplayValue } from '@testing-library/dom';
         
   </body>
 </html>
-<Questionpaper id={id} updateProps={updateProps} />
-{/* <QuestionNumber  /> */}
+
+{type=='aptitute'&&<Questionpaper id={id} updateProps={updateProps} />}
+{type=='self'&&<SelfdevelopmentQuestions id={id} updateProps={updateProps} />}
+{type=='reasoning'&&<Questions id={id} updateProps={updateProps} />}
+{type=='verbal'&&<VerbalQuestionpaper id={id} updateProps={updateProps} />}
+
 <div class="container-fluid" style={{marginTop:"-300px"}}>
       <div class="row">
           <div class="col-md-3 ms-auto div-bg">
@@ -150,7 +167,7 @@ import { queryAllByDisplayValue } from '@testing-library/dom';
     </div>
     </div>
 
-{/* <Footer /> */}
+<Footer />
 
      </>)
  }
