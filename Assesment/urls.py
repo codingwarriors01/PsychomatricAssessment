@@ -30,12 +30,34 @@ urlpatterns = [
 	path('checkanswer',views.checkanswer,name='checkanswer'),
 
 #by Aman
-	path('Verbal',VerbalAPI.as_view(),name='Verbal'),
-    path('profileList',ProfileList.as_view(),name='Verbals'),
-	path('display',VerbalListApi.as_view(), name='display'),
-    path('questions',views.homepage1, name='questions'),
-	path('User_Verbal_mapperAPI' , User_Verbal_mapperAPI.as_view(), name= 'User_Verbal_mapperAPI'),
-    path('User_Verbal_mapperList', User_Verbal_mapperList.as_view(), name='User_Verbal_mapperList'),
+	 path('Verbal',VerbalAPI.as_view(),name='Verbal'),
+    path('profileList',views.ProfileList.as_view(),name='Verbals'),
+    path('questions',views.homepage, name='questions'),
+    path('create', VerbalCreateApi.as_view(), name='create'),
+    path('display',VerbalListApi.as_view(), name='display'),
+    path('update/<int:pk>',VerbalUpdateApi.as_view(),name='update'),
+    path('showverbal/<int:pk>',Show.as_view(),name='showverbal'),
+    path('delete/<int:pk>',VerbalDeleteApi.as_view(),name='delete'),
+    path('User_Verbal_mapperAPI' , User_Verbal_mapperAPI.as_view(), name= 'User_Verbal_mapperAPI'),
+    path('User_Aptitude_mapperList', User_Verbal_mapperList.as_view(), name='User_Verbal_mapperList'),
+
+    path('api/UserFeedback', UserFeedback.as_view(), name='UserFeedback'),
+	path('api/UserFeedbackList', UserFeedackList.as_view(), name='UserFeedbackList'),
+	
+	path('userfeedback/',views.userfeedback,name="userfeedback"),
+
+    path('result',views.ResultView,name= 'result'),
+
+
+
+
+    path('Self_development',Self_developmentAPI.as_view(),name='Self_development'),
+    path('add', Self_developmentCreateApi.as_view(), name='add'),
+
+    path('self_update/<int:pk>',Self_developmentUpdateApi.as_view(),name='self_update'),
+    path('erase/<int:pk>',Self_developmentDeleteApi.as_view(),name='erase'),
+    path('displayself_dev/<int:pk>',Self_developmentShow.as_view(),name='displayself_dev'),
+
 
 #by Gaurav
     path('reasoning', ReasoningAPI.as_view(), name='reasoning'),
@@ -50,7 +72,7 @@ urlpatterns = [
     path('questions', views.QuestionPage),
     path('create', ReasoningCreateApi.as_view(), name='create'),
     path('show/<int:pk>',Show.as_view(), name='show'),
-    path('update/<int:pk>',ReasoningUpdateApi.as_view(), name='update'),
+    path('updatereasoning/<int:pk>',ReasoningUpdateApi.as_view(), name='update'),
     path('User_Reasoning_mapperAPI' , User_Reasoning_mapperAPI.as_view(), name= 'User_Reasoning_mapperAPI'),
     path('User_Reasoning_mapperList', User_Reasoning_mapperList.as_view(), name='User_Reasoning_mapperList'),
     path('UserFeedback', UserFeedback.as_view(), name='UserFeedback'),

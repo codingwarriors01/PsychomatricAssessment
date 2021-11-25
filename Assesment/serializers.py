@@ -67,7 +67,6 @@ class VerbalSerializer(serializers.ModelSerializer):
             return verbal
 
 
-#By Aman
 class User_Verbal_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
         model=User_Verbal_mapper
@@ -76,6 +75,24 @@ class User_Verbal_mapper_Serializer(serializers.ModelSerializer):
     def create(self,validated_data):
         verbal=User_Verbal_mapper.objects.create(**validated_data)
         return verbal    
+
+class Self_developmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Self_development
+        fields='__all__'      
+
+    def create(self,validated_data):
+      self_development=Self_development.objects.create(**validated_data)
+      return self_development    
+
+class User_selfdevelop_mapperSerializer(serializers.ModelSerializer):
+    class meta:
+        model=User_selfdevelop_mapper
+        fields='__all__'
+
+    def create(self,validated_data):
+        user_selfdevelop_mapper=User_selfdevelop_mapper.objects.create(**validated_data)
+        return user_selfdevelop_mapper
 
 
 
