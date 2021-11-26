@@ -1,32 +1,17 @@
-
+from rest_framework.mixins import ListModelMixin,  RetrieveModelMixin,DestroyModelMixin
 from django.shortcuts import render
-
-# Create your views here.
-
-from json.decoder import JSONDecoder
-from json.encoder import JSONEncoder
-from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
-from django.db.models.query import QuerySet
-from django.shortcuts import render
-from django.http import JsonResponse
-from rest_framework import generics, serializers
+from rest_framework import generics, status
 from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import RetrieveModelMixin
-from django.shortcuts import get_object_or_404
-from rest_framework import response
-from rest_framework.decorators import api_view, renderer_classes
-from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 from rest_framework.response import Response
-from .serializers import  *
 from rest_framework.views import APIView
+from .serializers import  *
 from .models import *
-from rest_framework import status
-from django.core import serializers as core_serializers
-from django.core import serializers
 import json
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny
 from django.http.response import HttpResponse
+
+
+
 
 def indexpage(request):
     return render(request, 'assesment_system/index.html')
@@ -37,8 +22,15 @@ def basepage(request):
 
 
 class CandidateRegister(generics.GenericAPIView):
-     serializer_class = CandidateSerializer
-     def post(self,request):
+    serializer_class = CandidateSerializer
+    def post(self, request): 
+        requestdata=json.loads(request.body)   
+        serializer = self.get_serializer(data=requestdata)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)    
+    serializer_class = CandidateSerializer
+    def post(self,request):
         serializer = CandidateSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
@@ -88,14 +80,14 @@ class  ApptitudeList(APIView):
         serialized = AptitudeSerializer(tasks, many=True)
         return Response(serialized.data)
 
-# class  Show(GenericAPIView,RetrieveModelMixin):
-#     queryset=Aptitude.objects.all()
-#     serializer_class=AptitudeSerializer
-
-#     def get(self,request,*args,**kwargs):
-#         return self.retrieve(request,*args,**kwargs)
-
 class  Show(GenericAPIView,RetrieveModelMixin):
+    queryset=Aptitude.objects.all()
+    serializer_class=AptitudeSerializer
+
+    def get(self,request,*args,**kwargs):
+        return self.retrieve(request,*args,**kwargs)
+
+class  ReasoningShow(GenericAPIView,RetrieveModelMixin):
     queryset=Reasoning.objects.all()
     serializer_class=ReasoningSerializer
 
@@ -157,6 +149,58 @@ class User_Verbal_mapperList(APIView):
         tasks = User_Verbal_mapper.objects.all()
         serialized = User_Verbal_mapper_Serializer(tasks, many=True)
         return Response(serialized.data)
+
+#Self development Curd operations
+
+
+
+
+class Self_development_User_mapperDeleteApi(generics.DestroyAPIView):
+    queryset = Self_development_User_mapper.objects.all()
+    serializer_class = Self_development_User_mapperSerializer
+
+class Self_development_User_mapperList(APIView):
+    def get(self, request):
+        tasks = Self_development_User_mapper.objects.all()
+        serialized = Self_development_User_mapperSerializer(tasks, many=True)
+        return Response(serialized.data)
+
+class Self_development_User_mapperApi(generics.GenericAPIView):
+    serializer_class = Self_development_User_mapperSerializer
+    def post(self, request):
+        requestdata=json.loads(request.body)
+        serializer = self.get_serializer(data=requestdata,many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response()
+
+
+
+#####################################
+
+class Self_developmentCreateApi(generics.CreateAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+class Self_developmentShow(GenericAPIView,RetrieveModelMixin):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+     def get(self,request,*args,**kwargs):
+         return self.retrieve(request,*args,**kwargs)
+
+class Self_developmentUpdateApi(generics.RetrieveUpdateDestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+class Self_developmentDeleteApi(generics.DestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+
+
+
+#############################################################
 
 
 class Self_developmentAPI(generics.GenericAPIView):
@@ -231,7 +275,7 @@ class ReasoningList(APIView):
 
 
 def QuestionPage(request):
-    # tasks = Reasoning.objects.all()
+
     return render(request, 'assesment_system/question_page.html')
 
 class ReasoningUpdateApi(generics.RetrieveUpdateDestroyAPIView):
@@ -265,7 +309,7 @@ class ReasoningViewApi(generics.ListAPIView):
 
 
 
-#By Rajat   
+
 class crud(generics.RetrieveUpdateDestroyAPIView):
 	queryset=Aptitude.objects.all()
 	serializer_class=AptitudeSerializer
@@ -277,7 +321,7 @@ class User_Aptitude_mapperAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=requestdata,many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return render(request,'assesment_system/feedback.html')
+        return ()
 
 
 class User_Apptitude_mapper_crud(generics.RetrieveUpdateDestroyAPIView):
@@ -352,46 +396,28 @@ def Resultlist(request):
 
 
 
- #by pratiksha 
+
 
 class UserLoginView(generics.GenericAPIView):
     permission_classes = (AllowAny,)
     serializer_class = CandidateloginSerializer
-   
-    # filter_fields = ('username')
-    # lookup_field = 'pk'
+
 
     def post(self, request):
-        print("Requested data is ",request.data)
-        # serializer = CandidateloginSerializer(data=request.data)  
         serializer=self.serializer_class(data=request.data)
-        print(serializer)
-        print(serializer.is_valid()) 
-        # serializer.is_valid(raise_exception=True)
-        print(serializer)
-        print(serializer.data)
-        # print(serializer.initial_data['username'])
-        print("llll")
         status_code = status.HTTP_200_OK
         username=serializer.initial_data['username']
         password=serializer.initial_data['password']
-        print(username)
         user=Candidate.objects.filter(username=username,password=password)
-        print(user)
-        if user: 
-            
-          print(user)    
+        if user:
           response = {
               'success': 'True',
               'status code': status_code,
               'message': 'User logged in  successfully',
-              # 'token': serializer.initial_data['csrfmiddlewaretoken'],
-              # 'userId': serializer.data['username'],
+
               'username': serializer.initial_data["username"],
-              # 'default_role': user[0].default_role
 
           }
-          print(response)
           return HttpResponse("successfully logged in")
 
 
@@ -399,7 +425,7 @@ class UserLoginView(generics.GenericAPIView):
             return HttpResponse("wrong username or password")   
 
 def ExamDashboard(request):
-    return render(request,'assesment_system/exam_dashboard.html')
+    return render(request,'assesment_system/exam_dashboard.html')            
 
 class CandidateList(GenericAPIView, ListModelMixin):
      queryset = Candidate.objects.all()

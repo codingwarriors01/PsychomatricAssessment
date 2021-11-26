@@ -40,6 +40,7 @@ class User_Verbal_mapper(models.Model):
     q_id=models.CharField(max_length=100)
     user_answer=models.CharField(max_length=100)
 
+
 class Self_development(models.Model):
     self_qid=models.AutoField(primary_key=True)
     self_question=models.CharField(max_length=500)
@@ -54,6 +55,10 @@ class Self_development(models.Model):
 class User_selfdevelop_mapper(models.Model):    
     selfuser_ans=models.CharField(max_length=100)
     self_qid=models.CharField(max_length=100)
+class Self_development_User_mapper(models.Model):
+    Sq_id=models.CharField(max_length=100)
+    Suser_answer=models.CharField(max_length=100)
+
 
 #by gaurav
 class Reasoning(models.Model):
