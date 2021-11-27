@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ThankYou from './Thankyou';
 
 export default function Timer() {
-    const [minutes, setMinutes] = React.useState(0)
+    const [minutes, setMinutes] = React.useState(50)
     const [seconds, setSeconds] = React.useState(20);
   
     React.useEffect(() => {

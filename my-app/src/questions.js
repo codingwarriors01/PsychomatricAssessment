@@ -48,7 +48,7 @@ export default function Questions(props) {
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
           </head>
  
-    <Card border="dark" style={{ width: '40rem', height:"auto", marginTop:"32px"}}>
+    <Card border="dark" style={{ width: '65rem', height:"auto", marginTop:"32px", marginLeft: "10px"}}>
     <Card.Header style={{color:"blue", fontSize:"22px"}}><strong>Question {id}:- {question?question:"" }</strong></Card.Header>
     <Card.Body>
       <Card.Title></Card.Title>
@@ -68,8 +68,8 @@ export default function Questions(props) {
   <div class="card-body">
   
     <button className="btn btn-dark" onClick={()=>{props.updateProps(Number(props.id)-1===0?1:Number(props.id)-1)}}> &larr; Previous</button>
-    <button className="btn btn-primary" style={{visibility:id===6? 'visible':"hidden", marginLeft:"40px"}}>Submit</button>
-    <button className="btn btn-dark" style={{marginLeft:"40px"}} onClick={()=>{props.updateProps(Number(props.id)+1<7?Number(props.id)+1:6)}}>Save & Next &rarr; </button>
+    <button className="btn btn-primary" style={{visibility:id===10? 'visible':"hidden", marginLeft:"40px"}}>Submit</button>
+    <button className="btn btn-dark" style={{marginLeft:"40px"}} onClick={()=>{props.updateProps(Number(props.id)+1<11?Number(props.id)+1:10)}}>Save & Next &rarr; </button>
 
   </div>
 </div>

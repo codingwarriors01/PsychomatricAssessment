@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
 import axios from 'axios'
 import TextField from "@material-ui/core/TextField";
 import NavBar from './header';
+import Footer from './footer';
 
 
 export default class Login extends React.Component{
@@ -61,13 +62,16 @@ export default class Login extends React.Component{
   &nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary">Cancel</a>
   </div>
 </div>
+{/* <Footer/> */}
 
 
                 </body>
 
                 </html>
+
             
             )
+            
    
 }
 

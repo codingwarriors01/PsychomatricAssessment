@@ -68,17 +68,17 @@ export default function Questionpaper(props) {
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
           </head>
         
-                   <Card id="card" border="dark" style={{ width: '45rem', marginTop:"100px" ,height:"auto"}}>
+                   <Card id="card" border="dark" style={{ width: '65rem', marginTop:"100px" ,height:"auto", marginLeft: "10px"}}>
 
-                  <Card.Header><strong>Question {props.id}. {question?question:"" }</strong></Card.Header>
+                  <Card.Header style={{color:"blue", fontSize:"22px"}}><strong>Question {props.id}. {question?question:"" }</strong></Card.Header>
                   <Card.Body>
                     <Card.Title></Card.Title>
-                    <Card.Text>
+                    <Card.Text style={{fontSize:"20px", color:"brown"}}>
                      <br/>
-                      <input class="form-check-input" type="radio" value={q_option1} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option1?q_option1:""}<br/>
-                      <input class="form-check-input" type="radio" value={q_option2} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option2?q_option2:""}<br/>
-                      <input class="form-check-input" type="radio" value={q_option3} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option3?q_option3:""}<br/>
-                      <input class="form-check-input" type="radio" value={q_option4} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option4?q_option4:""}<br/>
+                      <input class="form-check-input" type="radio" value={q_option1} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option1?q_option1:""}<br/><br/>
+                      <input class="form-check-input" type="radio" value={q_option2} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option2?q_option2:""}<br/><br/>
+                      <input class="form-check-input" type="radio" value={q_option3} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option3?q_option3:""}<br/><br/>
+                      <input class="form-check-input" type="radio" value={q_option4} onChange={(e)=>{setAnswer([...answer,e.target.value])}} name="flexRadioDefault" id="flexRadioDefault1" /> {q_option4?q_option4:""}<br/><br/>
 
 
                     </Card.Text>

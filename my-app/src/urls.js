@@ -11,6 +11,9 @@ import Register from './register';
 import Result from './result';
 import Home from './homepage';
 import VerbalQuestionpaper from './verbalquestion'
+import Demo from './demo-test';
+import ExamInstruction from './exam-instructions';
+import Questions from './questions';
 
 
 
@@ -24,17 +27,16 @@ function App(){
         <Route exact path="/test/:type" element={<Exam/>}/>
         <Route exact path="/SelfdevelopmentQuestions" element={<SelfdevelopmentQuestions/>}/>
         <Route exact path="/exam_dashboard" element={<ExamDashborad/>}/>
-
+        <Route exact path="/questions" element={<Questions/>}/>
         <Route exact path="/VerbalQuestionpaper" element={<VerbalQuestionpaper/>}/>
         <Route exact path="/signup" element={<Register/>}/>
         <Route exact path="/show"  element={<API/>}/>
         <Route exact path="/thankyou"  element={<ThankYou/>}/>
         <Route exact path="/self_development"  element={<SelfdevelopmentQuestions/>}/>
         <Route exact path="/final"  element={<Questionpaper/>}/>
-        {/* <Route exact path=""  element={<Exam/>}/> */}
-
-
-
+        <Route exact path="/demo"  element={<Demo/>}/>
+        <Route exact path="/instruction"  element={<ExamInstruction/>}/>
+        {/* <Route exact path="/reasoning"  element={<Questions/>}/> */}
 
         </Routes>
         </Router>);

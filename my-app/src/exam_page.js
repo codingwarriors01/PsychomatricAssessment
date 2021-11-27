@@ -47,7 +47,7 @@ import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
 
 
 
-    <div class="area"></div><nav class="main-menu">
+    {/* <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
                     <a href="http://justinfarrow.com">
@@ -137,7 +137,7 @@ import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
                     </a>
                 </li>  
             </ul>
-        </nav>
+        </nav> */}
 
         
   </body>
