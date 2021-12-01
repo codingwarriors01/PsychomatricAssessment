@@ -12,7 +12,6 @@ from django.http.response import HttpResponse
 
 
 
-
 def indexpage(request):
     return render(request, 'assesment_system/index.html')
 
@@ -282,14 +281,10 @@ class ReasoningUpdateApi(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reasoning.objects.all()
     serializer_class = ReasoningSerializer
 
-class User_Reasoning_mapperAPI(generics.GenericAPIView):
+class User_Reasoning_mapperAPI(generics.CreateAPIView):
     serializer_class = User_Reasoning_mapper_Serializer
-    def post(self, request):      
-        serializer = self.get_serializer(data=request.data,many=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response()
-
+    queryset = User_Reasoning_mapper.objects.all()
+    
 class User_Reasoning_mapperList(APIView): 
     def get(self, request):
         tasks = User_Reasoning_mapper.objects.all()
@@ -480,8 +475,8 @@ def index(request):
     return render(request, 'assesment_system/index.html')     
 
 def ResultView(request):
-    correct = 0
-    incorrect=0
+    user_cresult = 0
+    user_wresult=0
     res = User_Reasoning_mapper.objects.all()
     for i in res:
         question_id = i.question_id
@@ -490,12 +485,12 @@ def ResultView(request):
         for j in res2:
             answer = j.answer
         if user_answer == answer:
-            correct = correct+1
+            user_cresult = user_cresult+1
         else:
-            incorrect = incorrect+1
-    print("Your " +str(correct)+ " answer is correct and " +str(incorrect)+ " answer is incorrect.")
-    result = Result(correct_answer = correct, incorrect_answer = incorrect)
+            user_wresult = user_wresult+1
+    print("Your " +str(user_cresult)+ " answer is correct and " +str(user_wresult)+ " answer is incorrect.")
+    result = Result(user_cresult = user_cresult, user_wresult = user_wresult)
     result.save()
-    return render(request, 'result.html')                
+    return render(request, 'assesment_system/result.html')                
 
 
