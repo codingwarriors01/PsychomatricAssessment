@@ -1,14 +1,7 @@
 import {React,useState} from "react";
-<<<<<<< HEAD
-import "./starfeedback.css";
-import {FaStar} from "react-icons/fa";
-
-
-=======
 // import "./starfeedback.css";
 import {FaStar} from "react-icons/fa";
 
->>>>>>> de77fb0a7f24d5f5adb422d541dca069fecae1ff
 const colors = {
     orange: "#FFBA5A",
     grey: "#a9a9a9"

@@ -135,13 +135,15 @@ class VerbalDeleteApi(generics.DestroyAPIView):
      serializer_class=VerbalSerializer
 
 
-class User_Verbal_mapperAPI(generics.GenericAPIView):    
+class User_Verbal_mapperAPI(generics.CreateAPIView):    
     serializer_class = User_Verbal_mapper_Serializer
-    def post(self, request):      
-        serializer = self.get_serializer(data=request.data,many=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response()
+    queryset=User_Verbal_mapper.objects.all()
+
+    # def post(self, request):      
+    #     serializer = self.get_serializer(data=request.data,many=True)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response()
 
 class User_Verbal_mapperList(APIView): 
     def get(self, request):
@@ -164,14 +166,15 @@ class Self_development_User_mapperList(APIView):
         serialized = Self_development_User_mapperSerializer(tasks, many=True)
         return Response(serialized.data)
 
-class Self_development_User_mapperApi(generics.GenericAPIView):
+class Self_development_User_mapperApi(generics.CreateAPIView):
     serializer_class = Self_development_User_mapperSerializer
-    def post(self, request):
-        requestdata=json.loads(request.body)
-        serializer = self.get_serializer(data=requestdata,many=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response()
+    queryset = Self_development_User_mapper.objects.all()
+    # def post(self, request):
+    #     requestdata=json.loads(request.body)
+    #     serializer = self.get_serializer(data=requestdata,many=True)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response()
 
 
 
