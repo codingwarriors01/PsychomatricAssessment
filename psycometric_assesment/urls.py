@@ -1,4 +1,4 @@
-"""project URL Configuration
+"""psycometric_assesment URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Assesment.urls')),
-    # path('quiz', include('quiz.urls', namespace='quiz')),
+    path('',include('Assesment.urls')),
+   
 ]

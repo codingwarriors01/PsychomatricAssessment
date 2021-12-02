@@ -11,6 +11,7 @@ import { Route, Link, Switch ,BrowserRouter as Router } from 'react-router-dom';
 // import API from './component/user_creation';
 // import Delete from './component/delete';
 import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
 import GraphApp from './piegraph';
 // import Raj1 from './hook1'; 
 // import Edit from './component/edit';
@@ -20,16 +21,29 @@ import { Component } from 'react';
 import App from './urls';
 // import Exam from './exam_page';
 import Rating from './starfeedback';
+=======
+// import Raj1 from './hook1'; 
+// import Edit from './component/edit';
+import { Component } from 'react';
+import App from './urls';
+// import Exam from './exam_page';
+
+>>>>>>> de77fb0a7f24d5f5adb422d541dca069fecae1ff
 
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Exam/> */}
     <App/>
+<<<<<<< HEAD
     {/* <GraphApp/> */}
 
     {/* <Rating/> */}
     {/* <Graph/> */}
+=======
+   
+
+>>>>>>> de77fb0a7f24d5f5adb422d541dca069fecae1ff
     {/* <Questionpaper/> */}
     {/* <Rajat /> */}
     {/* <Gaurav1/> */}
