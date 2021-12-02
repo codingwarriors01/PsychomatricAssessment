@@ -42,6 +42,7 @@ export default function ExamInstruction()
   </Card>
   <div className="text-center">
   <Link to="/test/reasoning" class="btn btn-primary">I'm Ready to begin</Link>
+
   </div>
                 </body>
 
