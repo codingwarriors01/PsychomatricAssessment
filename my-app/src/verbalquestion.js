@@ -3,8 +3,6 @@ import './card.css';
 import './timer'
 import Card from "react-bootstrap/Card";
 import axios from 'axios';
-import Timer from './timer';
-import Exam from './exam_page';
 
 
  export default function VerbalQuestionpaper(props) {

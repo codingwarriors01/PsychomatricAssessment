@@ -1,5 +1,4 @@
 import {React,useState} from "react";
-// import "./starfeedback.css";
 import {FaStar} from "react-icons/fa";
 
 const colors = {
@@ -7,14 +6,6 @@ const colors = {
     grey: "#a9a9a9"
     
 };
-
-const labels = {
-    1: 'Useless',
-    2: 'Poor',
-    3: 'Ok',
-    4: 'Good',
-    5: 'Excellent',
-  };
 
 function Rating() {
     const [currentValue, setCurrentValue] = useState(2);

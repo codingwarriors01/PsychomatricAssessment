@@ -30,7 +30,7 @@ export default function SideNav()
     <button class="nav-link btn btn-link" style={{color:Reasoningcolor}} onClick={()=>{setReasoningColor("orange"); setAIColor("white"); setAptiColor("white"); setVerbalColor("white"); setFiroColor("white")}}  id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><strong>Reasoning</strong></button>
     <button class="nav-link btn btn-link" style={{color:Firocolor}} onClick={()=>{setFiroColor("orange"); setAIColor("white"); setAptiColor("white"); setReasoningColor("white"); setVerbalColor("white")}} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><strong>FIRO B</strong></button>
     <button class="nav-link btn btn-link" style={{color:Verbalcolor}} onClick={()=>{setVerbalColor("orange"); setAIColor("white"); setAptiColor("white"); setReasoningColor("white"); setFiroColor("white")}} id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><strong>Verbal</strong></button>
-    <button class="nav-link btn btn-link" style={{color:Aicolor}} onClick={()=>{setAIColor("orange"); setAptiColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white")}} id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><strong>AI Assist</strong></button>
+    <button class="nav-link btn btn-link" style={{color:Aicolor}} onClick={()=>{setAIColor("orange"); setAptiColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white")}} id="v-pills-assist-tab" data-bs-toggle="pill" data-bs-target="#v-pills-assist" type="button" role="tab" aria-controls="v-pills-assist" aria-selected="false"><strong>AI Assist</strong></button>
   </div>
   <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home"  role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -97,6 +97,24 @@ export default function SideNav()
   </div>
 </div>
     </div>
+
+    <div class="tab-pane fade" id="v-pills-assist" role="tabpanel" aria-labelledby="v-pills-assist-tab">
+    <div class="card mb-3 col-md-6">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src={Test5} class="img-fluid rounded-start"/>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">AI Assist</h5>
+        <p><strong>Topics:</strong> Antonym, Synonym, Reading Comprehension, Sentence Correction, One word Substitution, Change of Speech, Articles</p>
+        <Link to="/assist" class="btn btn-info">Go to Assistant</Link>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
   </div>
 </div>
 </body>

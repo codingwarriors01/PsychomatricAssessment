@@ -7,7 +7,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
 
-
 export default function Questionpaper(props) {
 
  const [q_id,setq_id] = useState(1);
@@ -18,12 +17,8 @@ export default function Questionpaper(props) {
  const [q_option4,setq_option4] = useState("");
  const [answer,setAnswer] = useState([]);
 
-
-
-  
   useEffect(()=>{
-
-      
+    
       axios.get('http://127.0.0.1:8000/Aptitudeshow/'+props.id)
     .then(res => {
       const question = res.data.question;

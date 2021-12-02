@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './exam_page.css';
-// import NavBar from './header'
-import {Nav, Navbar, NavDropdown, MenuItem,  Tabs, ButtonToolbar, Button, Table, ButtonGroup, Row, Col, Grid, Panel, FormGroup, FormControl, Container} from 'react-bootstrap';
-// import QuestionNumber from './question_numbers';
 import Footer from './footer';
 import VerbalQuestionpaper from './verbalquestion';
 import Questionpaper from './Aptitude';
-import StoreResult from './Aptitude';
 import Questions from './questions';
-import App from './urls';
 import Timer from './timer';
 import SelfdevelopmentQuestions from './Self_development';
-import { propTypes } from 'react-bootstrap/esm/Image';
-import { queryAllByDisplayValue } from '@testing-library/dom';
 import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
-import Loader from 'react-loader-spinner';
 import PageLoader from './loader';
  export default function Exam(props){
     let { type } = useParams();
@@ -30,7 +22,6 @@ import PageLoader from './loader';
      
  }
  useEffect(()=>{
-    //  alert('asf')
     setTimeout(()=>{setLoading(false)},3000);
 },[]);
  
@@ -51,8 +42,6 @@ else
   <body>
 
   <nav class="navbar navbar-light bg-color d-flex justify-content-center" ><Timer/></nav>
-
-
 
     {/* <div class="area"></div><nav class="main-menu">
             <ul>

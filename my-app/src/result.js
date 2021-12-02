@@ -1,7 +1,5 @@
 import React from 'react'
 import axios from 'axios';
-import Rating from './starfeedback';
-import ReactDOM from 'react-dom';
 import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
 
 export default class Result extends React.Component
@@ -44,9 +42,7 @@ export default class Result extends React.Component
                <th scope="col-2">Candidate ID</th>
                <th scope="col-2">Correct Answer</th>
                <th scope="col-3">Incorrect Answer</th>
-        
-               
-               
+       
                </tr>
              </thead>
              <tbody>
@@ -61,16 +57,11 @@ export default class Result extends React.Component
              </tbody>
         </table>
         <div class="text-center" style={{marginTop: "20px;"}}>
-            {/* <a href="" class="btn btn-info center" onClick={()=>this.ResponseSubmit()}>Exit</a> */}
             <Link to="/feedback" className="btn btn-info">Exit</Link>
         </div>
         
         </body>
         </html>
-            
-        
-        
-        
 
         )
     }

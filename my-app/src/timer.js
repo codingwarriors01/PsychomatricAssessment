@@ -1,8 +1,5 @@
 import React from 'react';
-import Result from './result';
 import ReactDOM from 'react-dom';
-// import Result from './result';
-import ThankYou from './Thankyou';
 import Rating from './starfeedback';
 
 export default function Timer() {
@@ -13,8 +10,7 @@ export default function Timer() {
       if (seconds > 0) {
         setTimeout(() => setSeconds(seconds - 1), 1000);
       } else {
-        // setSeconds(<Result/>);
-        if(minutes!=0 && seconds==0){
+        if(minutes!==0 && seconds===0){
         setTimeout(() => setMinutes(minutes - 1));
         setSeconds(59);     
     }
@@ -23,8 +19,6 @@ export default function Timer() {
        ReactDOM.render(<Rating/>, document.getElementById('root'));
 
        }
-    
-        // ReactDOM.render(<Result/>, document.getElementById('root'));
       }
     });
   

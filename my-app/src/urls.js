@@ -1,10 +1,9 @@
 import React from 'react'
 import Questionpaper from './Aptitude';
 import SelfdevelopmentQuestions from './Self_development';
-import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import API from './component/user_creation';
 import Exam from './exam_page';
-import ThankYou from './Thankyou';
 import ExamDashborad from './exam_dashboard';
 import Login from './login';
 import Register from './register';
@@ -16,14 +15,13 @@ import ExamInstruction from './exam-instructions';
 import Questions from './questions';
 import PageLoader from './loader';
 import Rating from './starfeedback';
-
-
-
+import AI_Assist from './ai_assist';
 
 function App(){
     return (
         <Router>
         <Routes>
+
         <Route exact path="" element={<Home/>}/>
         <Route exact path="/signin" element={<Login/>}/>
         <Route exact path="/test/:type" element={<Exam/>}/>
@@ -33,7 +31,6 @@ function App(){
         <Route exact path="/VerbalQuestionpaper" element={<VerbalQuestionpaper/>}/>
         <Route exact path="/signup" element={<Register/>}/>
         <Route exact path="/show"  element={<API/>}/>
-        {/* <Route exact path="/thankyou"  element={<ThankYou/>}/> */}
         <Route exact path="/self_development"  element={<SelfdevelopmentQuestions/>}/>
         <Route exact path="/final"  element={<Questionpaper/>}/>
         <Route exact path="/demo"  element={<Demo/>}/>
@@ -41,11 +38,10 @@ function App(){
         <Route exact path="/loader"  element={<PageLoader/>}/>
         <Route exact path="/result"  element={<Result/>}/>
         <Route exact path="/feedback"  element={<Rating/>}/>
-
+        <Route exact path="/assist"  element={<AI_Assist/>}/>
 
         </Routes>
         </Router>);
     }
-
 
 export default App;    
