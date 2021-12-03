@@ -37,6 +37,7 @@ export default function Questionpaper(props) {
       setq_option2(q_option2 );
       setq_option3(q_option3 );
       setq_option4(q_option4 );
+      console.log('Question Recieved',res.status)
   
     })
     
@@ -53,7 +54,7 @@ export default function Questionpaper(props) {
         headers:{
           'Content-type':'application/json'
       },
-      })
+      }).then((res)=>{console.log('data posted',res.status)})
     }
     
       const navigate= useNavigate();

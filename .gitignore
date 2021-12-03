@@ -6,3 +6,5 @@ dist/
 .classpath
 bin/
 .idea/
+.env
+

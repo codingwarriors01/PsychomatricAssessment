@@ -8,8 +8,10 @@ class Candidate(models.Model):
   password=models.CharField(max_length=50)
   contact_no = models.CharField(max_length=100)
 
+  def __str__(self):
+      return self.email
 
-#by Rajat
+
 class Aptitude(models.Model):
   q_id=models.AutoField(primary_key=True)
   question=models.CharField(max_length=100)
@@ -19,13 +21,18 @@ class Aptitude(models.Model):
   q_option4=models.CharField(max_length=100)
   q_ans=models.CharField(max_length=100,unique=True)
 
+  def __str__(self):
+      return self.question
+
+
 class User_Aptitude_mapper(models.Model):
- 
   q_id=models.CharField(max_length=100)
   user_answer=models.CharField(max_length=100)
-  
 
-# by Aman
+  def __str__(self):
+      return self.q_id
+
+
 class Verbal(models.Model):
     q_id=models.AutoField(primary_key=True)
     question=models.CharField(max_length=500)
@@ -35,10 +42,17 @@ class Verbal(models.Model):
     q_option_4=models.CharField(max_length=100)
     q_answer=models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.question
 
 class User_Verbal_mapper(models.Model):
     q_id=models.CharField(max_length=100)
     user_answer=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user_answer
+
+
 
 
 class Self_development(models.Model):
@@ -50,14 +64,19 @@ class Self_development(models.Model):
     self_option4=models.CharField(max_length=100)
     self_option5=models.CharField(max_length=100)
     self_option6=models.CharField(max_length=100)
-    
+
+    def __str__(self):
+        return self.self_question
+
 
 class Self_development_User_mapper(models.Model):
     Sq_id=models.CharField(max_length=100)
     Suser_answer=models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.Suser_answer
 
-#by gaurav
+
 class Reasoning(models.Model):
     question_id = models.AutoField(primary_key=True)
     question = models.CharField(max_length=850)
@@ -66,22 +85,32 @@ class Reasoning(models.Model):
     option_3 = models.CharField(max_length=100)
     option_4 = models.CharField(max_length=100)
     answer = models.CharField(max_length=100)
-
+    def __str__(self):
+        return self.question
 
 class User_Reasoning_mapper(models.Model):
     question_id = models.CharField(max_length=100)
     user_answer = models.CharField(max_length=100)
 
-#by Rajat
+    def __str__(self):
+        return self.user_answer
+
+
 
 class user_feedback(models.Model):
   user_feedback=models.CharField(max_length=10)
+
+  def __str__(self):
+      return self.user_feedback
 
 
 class Result(models.Model):
   # uid=models.ForeignKey(Candidate,on_delete=models.CASCADE)
   user_cresult=models.CharField(max_length=10)
   user_wresult=models.CharField(max_length=10)
+
+  def __str__(self):
+      return self.user_cresult
 
 class Register(models.Model):
     first_name = models.CharField(max_length=100)
