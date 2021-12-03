@@ -12,11 +12,24 @@ export default function Section_Result()
   useEffect(()=>{
     axios.get('http://localhost:8000/resultview')
     .then(res => {
+      const data1=[res.data]
       console.log(res.data)
-      setCresult(res.data)
+      setCresult(res.data)      
       
     });
   },[])
+  
+const  renderElement=()=>{
+  const data2 = cresult.map((dt)=>{
+    console.log("data3", dt.user_cresult)
+    if(dt.user_cresult>5)
+       return <h4 className="text-info">You are good in reasoning, you can go in development.</h4>;
+    
+  })
+  return data2;
+  
+ }
+  
     return(
         <>
 
@@ -91,6 +104,31 @@ export default function Section_Result()
   </div>
 </div>
 </div>
+
+<div className="text-center mt-5">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Career Assistant
+</button>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Best possible option for your Career</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="model">
+            <h4>{renderElement()}</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
         </>
     )
 }

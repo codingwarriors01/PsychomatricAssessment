@@ -107,7 +107,7 @@ export default function SideNav()
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">AI Assist</h5>
-        <p><strong>Topics:</strong> Antonym, Synonym, Reading Comprehension, Sentence Correction, One word Substitution, Change of Speech, Articles</p>
+        <p><strong></strong> Click on the below button to see your performance in each section and get best possible career assistant according to your performance. </p>
         <Link to="/assist" class="btn btn-info">Go to Assistant</Link>
       </div>
     </div>

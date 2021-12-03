@@ -83,7 +83,7 @@ class user_feedback(models.Model):
 
 class Result(models.Model):
   # uid=models.ForeignKey(Candidate,on_delete=models.CASCADE)
-  user_cresult=models.CharField(max_length=10)
+  user_cresult=models.IntegerField(max_length=10)
   user_wresult=models.CharField(max_length=10)
   # test_type = models.CharField(max_length=20)
 

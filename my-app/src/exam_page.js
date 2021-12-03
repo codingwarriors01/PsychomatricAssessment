@@ -22,7 +22,7 @@ import PageLoader from './loader';
      
  }
  useEffect(()=>{
-    setTimeout(()=>{setLoading(false)},3000);
+    setTimeout(()=>{setLoading(false)},2000);
 },[]);
  
 if(loading)
