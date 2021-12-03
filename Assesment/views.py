@@ -8,11 +8,11 @@ from rest_framework.mixins import (DestroyModelMixin, ListModelMixin,
                                    RetrieveModelMixin)
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 
 from .models import *
 from .serializers import *
-
 
 def indexpage(request):
     return render(request, 'assesment_system/index.html')
@@ -22,22 +22,15 @@ def basepage(request):
 
 
 
-class CandidateRegister(generics.GenericAPIView):
-    serializer_class = CandidateSerializer
-    def post(self, request): 
-        requestdata=json.loads(request.body)   
-        serializer = self.get_serializer(data=requestdata)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)    
-    serializer_class = CandidateSerializer
-    def post(self,request):
-        serializer = CandidateSerializer(data=request.data)
+class CandidateRegister(APIView):
+     serializer_class =CustomUserSerializer
+     def post(self,request):
+        serializer = CustomUserSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      
 
 def candidateregister(request):
     return render(request, 'assesment_system/CandidateRegister.html')
@@ -48,7 +41,7 @@ def candidateregister(request):
 class candidateList(APIView):
     def get(self, request):
         tasks = Candidate.objects.all()
-        serialized = CandidateSerializer(tasks, many=True)
+        serialized = CustomUserSerializer(tasks, many=True)
         return Response(serialized.data)
 
 
@@ -111,11 +104,11 @@ class VerbalAPI(generics.GenericAPIView):
             "verbal":VerbalSerializer(verbal,context=self.get_serializer_context()).data
         })
 
-# class ProfileList(APIView):
-#     def get(self,request):
-#         tasks= Verbal.objects.all()
-#         serialized= VerbalSerializer(tasks,many=True)
-#         return Response(serialized.data)
+class ProfileList(APIView):
+    def get(self,request):
+        tasks= Verbal.objects.all()
+        serialized= VerbalSerializer(tasks,many=True)
+        return Response(serialized.data)
 
 def homepage1(request):
     return render(request,'assesment_system/questionpaper.html')
@@ -140,7 +133,8 @@ class VerbalDeleteApi(generics.DestroyAPIView):
 class User_Verbal_mapperAPI(generics.CreateAPIView):    
     serializer_class = User_Verbal_mapper_Serializer
     queryset=User_Verbal_mapper.objects.all()
-   
+
+  
 
 class User_Verbal_mapperList(APIView): 
     def get(self, request):
@@ -165,7 +159,8 @@ class Self_development_User_mapperList(APIView):
 
 class Self_development_User_mapperApi(generics.CreateAPIView):
     serializer_class = Self_development_User_mapperSerializer
-    queryset=Self_development_User_mapper.objects.all()
+    queryset = Self_development_User_mapper.objects.all()
+  
 
     
 
@@ -197,6 +192,57 @@ class Self_developmentDeleteApi(generics.DestroyAPIView):
 #############################################################
 
 
+class Self_developmentAPI(generics.GenericAPIView):
+    serializer_class= Self_developmentSerializer
+    def post(self,request,*args,**kwargs):
+        serializer=self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self_development= serializer.save()
+        return Response({
+            "self_development":Self_developmentSerializer(self_development,context=self.get_serializer_context()).data
+        })  
+
+class Self_developmentCreateApi(generics.CreateAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+
+class Self_developmentShow(GenericAPIView,RetrieveModelMixin):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+     def get(self,request,*args,**kwargs):
+         return self.retrieve(request,*args,**kwargs)
+
+
+
+
+class Self_developmentUpdateApi(generics.RetrieveUpdateDestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+class Self_developmentDeleteApi(generics.DestroyAPIView):
+     queryset=Self_development.objects.all()
+     serializer_class=Self_developmentSerializer
+
+
+class User_selfdevelop_mapperAPI(generics.GenericAPIView):    
+    serializer_class = User_Verbal_mapper_Serializer
+    def post(self, request):      
+        serializer = self.get_serializer(data=request.data,many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response()
+
+class User_selfdevelop_mapperList(APIView): 
+    def get(self, request):
+        tasks = User_selfdevelop_mapper.objects.all()
+        serialized = User_selfdevelop_mapperSerializer(tasks, many=True)
+        return Response(serialized.data)     
+
+
+
+#by gaurav
 
 class ReasoningAPI(generics.CreateAPIView):
     queryset = Reasoning.objects.all()
@@ -213,15 +259,10 @@ class ReasoningUpdateApi(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reasoning.objects.all()
     serializer_class = ReasoningSerializer
 
-
-
 class User_Reasoning_mapperAPI(generics.CreateAPIView):
-    queryset = User_Reasoning_mapper.objects.all()
     serializer_class = User_Reasoning_mapper_Serializer
-   
-
-
-
+    queryset = User_Reasoning_mapper.objects.all()
+    
 class User_Reasoning_mapperList(APIView): 
     def get(self, request):
         tasks = User_Reasoning_mapper.objects.all()
@@ -386,26 +427,26 @@ class UserFeedackList(APIView):
         serailzed= user_feedback_Serializer(tasks,many=True)
         return Response(serailzed.data)  
 
-class RegisterListView(APIView):
-    def get(self, request):
-        tasks = Register.objects.all()
-        serialized = RegisterSerializer(tasks, many=True)
-        return Response(serialized.data)    
+# class RegisterListView(APIView):
+#     def get(self, request):
+#         tasks = Register.objects.all()
+#         serialized = RegisterSerializer(tasks, many=True)
+#         return Response(serialized.data)    
 
-class RegisterCreateApi(generics.CreateAPIView):
-    queryset = Register.objects.all()
-    serializer_class = RegisterSerializer
+# class RegisterCreateApi(generics.CreateAPIView):
+#     queryset = Candidate.objects.all()
+#     serializer_class = CandidateSerializer
 
-class RegisterUpdateApi(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Register.objects.all()
-    serializer_class = RegisterSerializer   
+# class RegisterUpdateApi(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Register.objects.all()
+#     serializer_class = RegisterSerializer   
 
 def index(request):
     return render(request, 'assesment_system/index.html')     
 
 def ResultView(request):
-    correct = 0
-    incorrect=0
+    user_cresult = 0
+    user_wresult=0
     res = User_Reasoning_mapper.objects.all()
     for i in res:
         question_id = i.question_id
@@ -414,12 +455,26 @@ def ResultView(request):
         for j in res2:
             answer = j.answer
         if user_answer == answer:
-            correct = correct+1
+            user_cresult = user_cresult+1
         else:
-            incorrect = incorrect+1
-    print("Your " +str(correct)+ " answer is correct and " +str(incorrect)+ " answer is incorrect.")
-    result = Result(correct_answer = correct, incorrect_answer = incorrect)
+            user_wresult = user_wresult+1
+    print("Your " +str(user_cresult)+ " answer is correct and " +str(user_wresult)+ " answer is incorrect.")
+    result = Result(user_cresult = user_cresult, user_wresult = user_wresult)
     result.save()
-    return render(request, 'result.html')                
+    return render(request, 'assesment_system/result.html')    
+
+
+class BlacklistTokenUpdateView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = ()
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)                 
 
 

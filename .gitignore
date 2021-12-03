@@ -6,5 +6,4 @@ dist/
 .classpath
 bin/
 .idea/
-.env
-
+db.sqlite3

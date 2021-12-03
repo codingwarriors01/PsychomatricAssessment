@@ -4,7 +4,7 @@ import './exam_page.css';
 import {Nav, Navbar, NavDropdown, MenuItem,  Tabs, ButtonToolbar, Button, Table, ButtonGroup, Row, Col, Grid, Panel, FormGroup, FormControl, Container} from 'react-bootstrap';
 // import QuestionNumber from './question_numbers';
 import Footer from './footer';
-import VerbalQuestionpaper from './verbalquestion'
+import VerbalQuestionpaper from './verbalquestion';
 import Questionpaper from './Aptitude';
 import StoreResult from './Aptitude';
 import Questions from './questions';
@@ -14,9 +14,13 @@ import SelfdevelopmentQuestions from './Self_development';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { queryAllByDisplayValue } from '@testing-library/dom';
 import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import PageLoader from './loader';
  export default function Exam(props){
     let { type } = useParams();
  const [id,setId]=useState(1);
+ const[loading,setLoading]=useState(true);
+
  function updateProps(e){
      if(e.target){
         setId(e.target.value);
@@ -27,11 +31,14 @@ import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
  }
  useEffect(()=>{
     //  alert('asf')
-    console.log(type)
-
-});
-
-
+    setTimeout(()=>{setLoading(false)},3000);
+},[]);
+ 
+if(loading)
+{
+    return(<PageLoader/>);
+}
+else
      return(
      <>
      
@@ -47,7 +54,7 @@ import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
 
 
 
-    <div class="area"></div><nav class="main-menu">
+    {/* <div class="area"></div><nav class="main-menu">
             <ul>
                 <li>
                     <a href="http://justinfarrow.com">
@@ -137,13 +144,13 @@ import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
                     </a>
                 </li>  
             </ul>
-        </nav>
+        </nav> */}
 
         
   </body>
 </html>
 
-{type=='aptitute'&&<Questionpaper id={id} updateProps={updateProps} />}
+{type=='aptitute'&& <Questionpaper id={id} updateProps={updateProps} />}
 {type=='self'&&<SelfdevelopmentQuestions id={id} updateProps={updateProps} />}
 {type=='reasoning'&&<Questions id={id} updateProps={updateProps} />}
 {type=='verbal'&&<VerbalQuestionpaper id={id} updateProps={updateProps} />}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './footer';
 import NavBar from './header';
 import './homepage.css';
 import main3 from './main3.jpg';
@@ -14,6 +15,7 @@ export default function Home() {
           <button class="btn btn-primary">GET STARTED</button>
     </div>
 </section>
+{/* <Footer/> */}
 
         </>
     )

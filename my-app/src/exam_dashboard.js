@@ -1,13 +1,18 @@
 import React from 'react';
 import './header.css';
-import NavBar from './header'
+import NavBar from './header';
+
 import Footer from './footer';
-import Test1 from './test1.png';
+import C1 from './c1.jpg';
+import C2 from './c2.png';
+import C3 from './c3.jpeg';
 import Test4 from './test4.png';
 import Test5 from './test5.jpg';
 import Test6 from './test6.png';
 import Path from './urls';
 import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
+import SideNav from './sidenav';
+import './exam_dashboard.css'
 export default function ExamDashborad()
 {
   
@@ -56,7 +61,7 @@ export default function ExamDashborad()
 </div> */}
 
 
-<div class="row pb-3">
+{/* <div class="row pb-3">
 <div class="card mb-3 col-md-6" style={{maxWidth: "540px"}}>
   <div class="row g-0">
     <div class="col-md-4">
@@ -118,10 +123,68 @@ export default function ExamDashborad()
     </div>
   </div>
 </div>
-</div>
+</div> */}
 
 
-<Footer />
+
+<SideNav/>
+
+<section id="service" class="section-gap">
+		<div class="container">
+			<div class="heading-title">
+				<h2>What We Do</h2>
+				<span style={{color: "#0f90dcde"}}>---- <i class="fa fa-suitcase"></i> ---- </span>
+				<p>Magnam dalores commodi suscipit conseqatur ex aliquid</p>
+			</div>
+			<div class="row">
+			    <div class="col-sm-4 text-center">	
+			    	<span class="service-icon"><i class="fa fa-globe"></i></span>
+			      	<h5>Online Assesment</h5>
+			      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			    </div>
+			    <div class="col-sm-4 text-center">
+			    	<span class="service-icon"><i class="fa fa-mobile"></i></span>
+			      	<h5>Training</h5>
+			      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			    </div>
+			    <div class="col-sm-4 text-center">
+			    	<span class="service-icon"><i class="fa fa-cloud"></i></span>
+			      	<h5>Demo Test</h5>        
+			      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			    </div>
+			</div>
+		</div>	
+	</section>
+
+{/* 
+<div id="carouselExampleIndicators" class="carousel slide container-fluid" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src={C2} class="d-block mx-auto" />
+    </div>
+    <div class="carousel-item">
+      <img src={C2} class="d-block mx-auto" />
+    </div>
+    <div class="carousel-item">
+      <img src={C2} class="d-block mx-auto" />
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> */}
+
+
 </>
     )
     

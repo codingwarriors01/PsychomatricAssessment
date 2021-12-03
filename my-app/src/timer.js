@@ -1,15 +1,17 @@
 import React from 'react';
-// import Result from './result';
+import Result from './result';
 import ReactDOM from 'react-dom';
+// import Result from './result';
 import ThankYou from './Thankyou';
+import Rating from './starfeedback';
 
 export default function Timer() {
-    const [minutes, setMinutes] = React.useState(0)
-    const [seconds, setSeconds] = React.useState(20);
+    const [minutes, setMinutes] = React.useState(59)
+    const [seconds, setSeconds] = React.useState(59);
   
     React.useEffect(() => {
       if (seconds > 0) {
-        setTimeout(() => setSeconds(seconds - 1), 6000);
+        setTimeout(() => setSeconds(seconds - 1), 1000);
       } else {
         // setSeconds(<Result/>);
         if(minutes!=0 && seconds==0){
@@ -18,7 +20,7 @@ export default function Timer() {
     }
         else{
             // setSeconds('Test Ended')
-       ReactDOM.render(<ThankYou/>, document.getElementById('root'));
+       ReactDOM.render(<Rating/>, document.getElementById('root'));
 
        }
     
