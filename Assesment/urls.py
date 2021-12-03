@@ -3,18 +3,22 @@ from Assesment import views
 from django.urls import path
 from .views import ApptitudeAPI, ApptitudeList,crud,UserLoginView,User_Aptitude_mapperList,VerbalListApi,User_Aptitude_mapperAPI,user_details_operation,User_Apptitude_mapper_crud,CandidateRegister,UserFeedback,UserFeedbackList,indexpage,basepage,candidateList,userfeedback,VerbalAPI,ProfileList,homepage1,User_Verbal_mapperAPI,User_Verbal_mapperList,ReasoningAPI,User_Reasoning_mapperAPI,User_Reasoning_mapperList,ReasoningViewApi,ResultList,Show
 from .views import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 
 urlpatterns = [
-	path('candidateregister/',views.candidateregister,name="candidateregister"),
+	path('register/', CandidateRegister.as_view(), name='CandidateRegister'),
 	path('CandidateRegister', CandidateRegister.as_view(), name='CandidateRegister'),
 	path('api/UserFeedback', UserFeedback.as_view(), name='UserFeedback'),
 	path('api/UserFeedbackList', UserFeedbackList.as_view(), name='UserFeedbackList'),
-	path('candidateList', candidateList.as_view(), name='candidateList'),
+	path('candidateList/', candidateList.as_view(), name='candidateList'),
 	path('userfeedback/',views.userfeedback,name="userfeedback"),
 	path('CandidateRegister/', CandidateRegister.as_view(), name='CandidateRegister'),
 	path('user_details_operation/<int:pk>/', user_details_operation.as_view(), name='user_details_operation'), #Crud operation on candidate by Pratiksha 
-    # path('show/<int:pk>/', CandidateRetrive.as_view()),
+    path('candidateshow/<int:pk>/', CandidateRetrive.as_view()),
     path('update/<int:pk>/',CandidateUpdate.as_view()),
     path('delete/<int:pk>/', CandidateDestroy.as_view()),
 	path('candidatelogin/',views.candidatelogin,name="candidatelogin"),
@@ -24,7 +28,7 @@ urlpatterns = [
 	path('', views.indexpage,name='indexpage'),
 	path('basepage', views.basepage,name='basepage'),
 	path('ApptitudeQuestionList', views.homepage,name='ApptitudeQuestionList'),
-	path('crud/<int:pk>/', crud.as_view(), name='crud'),  #crud operation on Apptitude Questions
+	path('crud/<int:pk>/', crud.as_view(), name='crud'), 
 	path('User_Apptitude_mapper_crud/<int:pk>/', User_Apptitude_mapper_crud.as_view(), name='User_Apptitude_mapper_crud'),
 	path('User_Aptitude_mapperAPI', User_Aptitude_mapperAPI.as_view(), name='User_Aptitude_mapperAPI'),
 	path('User_Aptitude_mapperList', User_Aptitude_mapperList.as_view(), name='User_Aptitude_mapperList'),
@@ -111,5 +115,9 @@ urlpatterns = [
     path('createuser', RegisterCreateApi.as_view(), name='createuser'),
     path('updateuser/<int:pk>',RegisterUpdateApi.as_view(), name='updateuser'),
     path('exam_dashboard', views.ExamDashboard, name='exam_dashboard'),	
+    path('logout/blacklist/', BlacklistTokenUpdateView.as_view(),
+        name='blacklist'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
 
 ]
