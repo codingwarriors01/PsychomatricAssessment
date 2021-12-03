@@ -1,199 +1,226 @@
-import React from 'react'
-import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
+import React, { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import TextField from "@material-ui/core/TextField";
-import Path from './urls';
+import  { useEffect } from 'react';
 
-export default class Register extends React.Component{
+//MaterialUI
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-    constructor(props)
-    {
+const useStyles = makeStyles((theme) => ({
+	paper: {
+		marginTop: theme.spacing(8),
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	},
+	form: {
+		width: '100%', // Fix IE 11 issue.
+		marginTop: theme.spacing(3),
+	},
+	submit: {
+		margin: theme.spacing(3, 0, 2),
+	},
+}));
 
-        super(props);
-        this.state={username:'',
+export default function SignUp() {
+	const history = useNavigate();
+	const initialFormData = Object.freeze({
+		email: '',
+		username: '',
+		password: '',
         first_name:'',
-        last_name:'',
-        email:'',
-        password:'',
-        contact_no:'',
-        errors:{},
+        last_name:''
+	});
 
-    }
-             
-    }
-    onSubmit=(e)=>{
-        e.preventDefault();
-    }
-    formvalidation=()=>{
-        const {username,first_name,last_name,email,password,contact_no}=this.state; 
-        let isValid=true;
-        const errors={};
-        if (username.trim().length<5){
-            errors.usernameLength="username length must be 6 or higher "
-            isValid=false;
-        }
-        if (first_name.trim().length<5){
-            errors.firstnameLength=" firstName must be 5 or higher "
-            isValid=false;
-        }
-        if (last_name.trim().length<5){
-            errors.lastnameLength=" LastName must be 5 or higher "
-            isValid=false;
-        }
-        if (!email.includes("@")){
-            errors.emailLength=" email must contain @ "
-            isValid=false;
-        }
-        if (password.trim().length<5){
-            errors.passLength=" password must be 5 or higher "
-            isValid=false;
-        }
-        if (contact_no.trim().length>10){
-            errors.contactLength=" contact no must be equal to 10 "
-            isValid=false;
-        }
+	const [formData, updateFormData] = useState(initialFormData);
+	const [formerrors,setFormErrors]=useState(initialFormData);
+    const [isSubmit,setIssubmit]=useState(false);
 
-        this.setState({errors});
-        return isValid;
+	const handleChange = (e) => {
+		updateFormData({
+			...formData,
+			// Trimming any whitespace
+			[e.target.name]: e.target.value.trim(),
+		});
+	};
+	
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
+		setFormErrors(Validate(formData))
+        setIssubmit(true)
+		console.log(formData);
 
-    }
-    // errors =validate();
+		
+		axios.post(`http://127.0.0.1:8000/register/`, {
+				email: formData.email,
+				user_name: formData.username,
+				password: formData.password,
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+			})
+			.then((res) => {
+				history('/login');
+				console.log(res);
+				console.log(res.data);
+			});
+	};
 
-    
+	useEffect(() => {
+		console.log(formerrors);
+		if (Object.keys(formerrors).length===0 && isSubmit){
+			console.log(formData);
+	
+		}
+	},[formerrors])
+	const Validate=(values)=>
+	{
+		const errors={};
+		const regex=/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
+		if(!values.username){
+			errors.username='Username is required!';
+		}
+		if(!values.first_name){
+			errors.first_name='First Name is required!';
+		}
+		if(!values.last_name){
+			errors.last_name='Last Name is required!';
+		}
+	
+		if(!values.email){
+			errors.email='email is required!';
+		}
 
+		if(!values.password){
+			errors.password='password  is required!';
+		}else if (values.password <= 10){
+			errors.password='password cannot exceed more than 10 characters';
+		}
 
-        render(){
-            const {errors}=this.state;
-         
-            return(
-                
-                <div className="text-center">
-            
-               <html>
-                   <head>
-                   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                            crossorigin="anonymous"></script>
-                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                        crossorigin="anonymous"></script>
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <link
-  rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-crossorigin="anonymous"
-/>
+		return errors;
+	}
 
-  
+	const classes = useStyles();
 
-        <title> user Registration Form</title>
+	return (
+		<Container component="main" maxWidth="xs">
+			<CssBaseline />
+			<div className={classes.paper}>
+				<Avatar className={classes.avatar}></Avatar>
+				<Typography component="h1" variant="h5">
+					Sign up
+				</Typography>
+				<form className={classes.form} noValidate>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="email"
+								label="Email Address"
+								name="email"
+								autoComplete="email"
+								onChange={handleChange}
+								
+							/>
+							<p style={{ color: 'red' }}>{formerrors.email}</p>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="username"
+								label="Username"
+								name="username"
+								autoComplete="username"
+								onChange={handleChange}
+							/>
+							<p style={{ color: 'red' }}>{formerrors.username}</p>
+						</Grid>
 
-
-                   </head>
-                   <body>
-                   <div class="container"></div>
-        <div class="row"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-6"> </div>
-            <h5>Registration Form</h5>
-                
-                <form method='POST' class="myform" onSubmit={(e)=>{e.preventDefault(); const isvalid=this.formvalidation();
-                const data={username:this.state.username,first_name:this.state.first_name,last_name:this.state.last_name,email:this.state.email,password:this.state.password,contact_no:this.state.contact_no}
-                console.log(data)
-                axios.post('http://127.0.0.1:8000/api/create/',data)
-                }}>
-                    
-                    <TextField
-                    id="user"
-                    label="UserName"
-                    value={this.state.username}
-                    onChange={(e)=>{this.setState({username:e.target.value})}}
-                    />
-                    <br/>
-                    <br/>
-                    <TextField
-                    id="first"
-                    label="First Name"
-                    value={this.state.first_name}
-                    onChange={(e)=>{this.setState({first_name:e.target.value})}}
-                    />
-                    <br/>
-                    <br/>
-                    <TextField
-                    id="last"
-                    label="Last Name"
-                    value={this.state.last_name}
-                    onChange={(e)=>{this.setState({last_name:e.target.value})}}
-                    />
-                     <br/>
-                    <br/>
-                    <TextField
-                    id="email"
-                    label="Email"
-                    value={this.state.email}
-                    onChange={(e)=>{this.setState({email:e.target.value})}}
-                    />
-                    <br/>
-                    <br/>
-                    <TextField
-                    id="pass"
-                    label="Password"
-                    value={this.state.password}
-                    onChange={(e)=>{this.setState({password:e.target.value})}}
-                    />
-                    <br/>
-                    <br/>
-                    <TextField
-                    id="contact"
-                    label="contact"
-                    value={this.state.contact_no}
-                    onChange={(e)=>{this.setState({contact_no:e.target.value})}}
-                    />
-                    
-                    <br/>
-                    <br/>
-                    {/* <button type="submit"  class="submit btn btn-primary" onClick={()=>{navigation.navigate('/show')}}>Submit</button> */}
-                    {/* <button  type="submit"  class="submit btn btn-primary" >Submit</button> */}
-
-                    <Link type="submit" to="/signin" class="submit btn btn-primary" >Submit</Link>
-                    {Object.keys(errors).map((key)=>{
-                        return <div key={key}>{errors[key]}</div>
-                    })}
-  
-
-
-                    
-                </form>
-                </body>
-
-                </html>
-                </div>
-            )
- 
- 
-     
+                        <Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="first"
+								label="First Name"
+								name="first_name"
+								autoComplete="first_name"
+								onChange={handleChange}
+							/>
+							<p style={{ color: 'red' }}>{formerrors.first_name}</p>
+						</Grid>
+                        <Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="last"
+								label="Last Name"
+								name="last_name"
+								autoComplete="last_name"
+								onChange={handleChange}
+							/>
+							<p style={{ color: 'red' }}>{formerrors.last_name}</p>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								name="password"
+								label="Password"
+								type="password"
+								id="password"
+								autoComplete="current-password"
+								onChange={handleChange}
+							/>
+							<p style={{ color: 'red' }}>{formerrors.password}</p>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControlLabel
+								control={<Checkbox value="allowExtraEmails" color="primary" />}
+								label="I want to receive inspiration, marketing promotions and updates via email."
+							/>
+						</Grid>
+					</Grid>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.submit}
+						onClick={handleSubmit}
+					>
+						Sign Up
+					</Button>
+					<Grid container justify="flex-end">
+						<Grid item>
+							<Link href="#" variant="body2">
+								Already have an account? Sign in
+							</Link>
+						</Grid>
+					</Grid>
+				</form>
+			</div>
+		</Container>
+	);
 }
-
-}
-
-
-
-

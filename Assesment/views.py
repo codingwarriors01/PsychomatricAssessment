@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from .serializers import  *
 from .models import *
@@ -20,22 +21,15 @@ def basepage(request):
 
 
 
-class CandidateRegister(generics.GenericAPIView):
-    serializer_class = CandidateSerializer
-    def post(self, request): 
-        requestdata=json.loads(request.body)   
-        serializer = self.get_serializer(data=requestdata)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)    
-    serializer_class = CandidateSerializer
-    def post(self,request):
-        serializer = CandidateSerializer(data=request.data)
+class CandidateRegister(APIView):
+     serializer_class =CustomUserSerializer
+     def post(self,request):
+        serializer = CustomUserSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      
 
 def candidateregister(request):
     return render(request, 'assesment_system/CandidateRegister.html')
@@ -46,7 +40,7 @@ def candidateregister(request):
 class candidateList(APIView):
     def get(self, request):
         tasks = Candidate.objects.all()
-        serialized = CandidateSerializer(tasks, many=True)
+        serialized = CustomUserSerializer(tasks, many=True)
         return Response(serialized.data)
 
 
@@ -494,6 +488,20 @@ def ResultView(request):
     print("Your " +str(user_cresult)+ " answer is correct and " +str(user_wresult)+ " answer is incorrect.")
     result = Result(user_cresult = user_cresult, user_wresult = user_wresult)
     result.save()
-    return render(request, 'assesment_system/result.html')                
+    return render(request, 'assesment_system/result.html')    
+
+
+class BlacklistTokenUpdateView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = ()
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)                 
 
 
