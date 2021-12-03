@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import  { useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import axios from 'axios'
-import GoogleLogin from 'react-google-login';
-import googleLogin from './GOOGLELOGIN'
+// import GoogleLogin from 'react-google-login';
+// import googleLogin from './GOOGLELOGIN'
 //MaterialUI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -123,11 +123,11 @@ export default function SignIn() {
 				window.location.reload();
 			});
 	};
-	const responseGoogle = async (response) => {
-		googleLogin(response.accessToken);
-		console.log("ppp",response)
-		console.log("nnk",response.accessToken)
-	};
+	// const responseGoogle = async (response) => {
+	// 	googleLogin(response.accessToken);
+	// 	console.log("ppp",response)
+	// 	console.log("nnk",response.accessToken)
+	// };
 
 
 	const classes = useStyles();
@@ -181,12 +181,12 @@ export default function SignIn() {
 					>
 						Sign In
 					</Button>
-					<GoogleLogin
+					{/* <GoogleLogin
 						clientId="526809489540-7euftut75c43atfg0vuvon7ormvos431.apps.googleusercontent.com"
 						buttonText="Login with google"
 						callback={TokenhandleSubmit}
 						cookiePolicy={'single_host_origin'}
-  />
+  /> */}
 					<Grid container>
 						<Grid item xs>
 							<Link href="#" variant="body2">

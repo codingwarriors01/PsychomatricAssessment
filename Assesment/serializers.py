@@ -1,12 +1,10 @@
-# from typing import ClassVar
-# from django.db.models import fields
 from rest_framework import serializers
-# from .models import  Aptitude, User_Aptitude_mapper,user_feedback,Candidate,Result,Verbal,User_Verbal_mapper,Reasoning,User_Reasoning_mapper,User_Verbal_mapper, Verbal,Candidate,Aptitude,User_Aptitude_mapper,user_feedback,Result
 from .models import  *
 
 
 
-#by pratiksha
+
+
 class  CandidateloginSerializer(serializers.ModelSerializer):
     class Meta:
         model=Candidate
@@ -40,7 +38,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
  
 
 
-#By Rajat 
 class CandidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidate
@@ -51,7 +48,7 @@ class CandidateSerializer(serializers.ModelSerializer):
 
         return apptitude
 
-#By Rajat 
+
 
 class AptitudeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,7 +59,7 @@ class AptitudeSerializer(serializers.ModelSerializer):
         apptitude = Aptitude.objects.create(**validated_data)
 
         return apptitude
-#By Rajat 
+
 
 class User_Aptitude_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -79,7 +76,7 @@ class User_Aptitude_mapper_Serializer(serializers.ModelSerializer):
 
 
 
-#By Aman
+
 class VerbalSerializer(serializers.ModelSerializer):
     class Meta:
         model=Verbal
@@ -94,7 +91,7 @@ class VerbalSerializer(serializers.ModelSerializer):
 class User_Verbal_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
         model=User_Verbal_mapper
-        fields=('q_id','user_answer')
+        fields='__all__'
 
     def create(self,validated_data):
         verbal=User_Verbal_mapper.objects.create(**validated_data)
@@ -133,7 +130,7 @@ class Self_development_User_mapperSerializer(serializers.ModelSerializer):
 
 
 
-#by gaurav
+
 class ReasoningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reasoning
@@ -158,7 +155,7 @@ class user_feedback_Serializer(serializers.ModelSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Register
+        model = Candidate
         fields='__all__'        
 
 
@@ -166,14 +163,14 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 
-#By Rajat 
+
 class User_Feedback_Serializer(serializers.ModelSerializer):
     class Meta:
         model = user_feedback
         fields = "__all__"
      
 
-#By Rajat 
+
 class Result_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Result

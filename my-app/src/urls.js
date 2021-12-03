@@ -1,18 +1,18 @@
 import React from 'react'
 import  {useState}  from "react";
 
-import Signup from "./Register";
+// import Signup from "./Register";
 
 import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
-import AdminDisplay from './display';
-import Updated from './updated';
-import CandidateDelete from './delete1';
+// import AdminDisplay from './display';
+// import Updated from './updated';
+// import CandidateDelete from './delete1';
 import Home from './homepage';
-import Show from './show';
+// import Show from './show';
 import Result from './result';
-import SignIn from './components/login';
-import SignUp from './components/register';
-import LogOut from './components/logout';
+import SignIn from './login';
+import SignUp from './register';
+import LogOut from './logout';
 import VerbalQuestionpaper from './verbalquestion'
 import Demo from './demo-test';
 import ExamInstruction from './exam-instructions';
@@ -35,9 +35,9 @@ function App(){
         <Router>
         <Routes>
         <Route exact path="" element={<Home/>}/>   
-        <Route exact path="/display"  element={<AdminDisplay/>}/>
-        <Route exact path="/update/:id"  element={<Updated/>}/>
-        <Route exact path="/Delete/:id"  element={<CandidateDelete/>}/>
+        {/* <Route exact path="/display"  element={<AdminDisplay/>}/> */}
+        {/* <Route exact path="/update/:id"  element={<Updated/>}/> */}
+        {/* <Route exact path="/Delete/:id"  element={<CandidateDelete/>}/> */}
         <Route exact path="/signin"  element={<SignIn/>}/>
         <Route exact path="/signup"  element={<SignUp/>}/>
         <Route exact path="/logout"  element={<LogOut/>}/>

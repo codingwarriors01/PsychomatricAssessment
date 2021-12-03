@@ -1,13 +1,15 @@
 import React from 'react';
 import './header.css';
-import {Router, Routes, Route, Link} from 'react-router-dom';
+import {Router, Routes, Route, Link,useNavigate} from 'react-router-dom';
 import ExamDashborad from './exam_dashboard';
 import QuestionNumber from './question_numbers';
 import Path from './urls';
 import Login from './login';
+
 export default function NavBar()
 {
     
+    const history=useNavigate();
                 
     return(
 
@@ -41,7 +43,7 @@ export default function NavBar()
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" onClick={()=>{history('/logout')}}>logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>
