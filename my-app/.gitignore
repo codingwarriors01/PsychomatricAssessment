@@ -21,17 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-db.sqlite3
-
-__pycache__
-package-lock.json
-package.json
-Aptitude.js
-exam_page.js
-piegraph.js
-questions.js
-result.js
-timer.js
-urls.js
-verbalquestion.js
