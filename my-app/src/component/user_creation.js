@@ -1,16 +1,6 @@
 import React from 'react';
-import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
-// import { withRouter } from "react-router-dom";
-import { withRouter } from "react-router";
-
-// import { Button } from 'semantic-ui-react'
-
-
-import {useNavigate} from 'react-router-dom';
-
+import {Link} from 'react-router-dom';
 import axios from 'axios'
-// import { useNavigation } from '@react-navigation/native';
-
 import TextField from "@material-ui/core/TextField";
 
 

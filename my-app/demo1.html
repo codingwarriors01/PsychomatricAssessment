@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 
 <head>
@@ -74,4 +75,82 @@
  
         });
     </script>
+=======
+<html>
+
+<head>
+    <script src='https://code.jquery.com/jquery-3.5.0.js'>  </script>
+   
+</head>
+<body>
+    <table id="t1">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+        </tr>
+      </table>
+      <table id="t2">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Realcoderz</td>
+          <td>Maria Anders</td>
+          <td>India</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+        </tr>
+      </table>     
+      <table id="t3">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>Mobiloitte</td>
+          <td>Maria Anders</td>
+          <td>America</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+        </tr>
+      </table> 
+      <button id="b1">Show after 3 seconds</button>      
+
+      <script >
+        $('#t1').hide();
+        $('#t2').hide();
+        $('#t3').hide();
+        $('#b1').click(function () {
+
+            setInterval(function () {
+                $("#t2").is(":visible") ? $("#t1").hide() : $("#t2").show();
+                $("#t3").is(":visible") ? $("#t2").hide() : $("#t3").show();
+                $("#t1").is(":visible") ? $("#t3").hide() : $("#t1").show();
+            }, 3000);
+            
+ 
+ 
+        });
+    </script>
+>>>>>>> de77fb0a7f24d5f5adb422d541dca069fecae1ff
     
