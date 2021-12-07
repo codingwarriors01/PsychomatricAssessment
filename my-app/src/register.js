@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import  { useEffect } from 'react';
-
+import { useEffect } from 'react';
 //MaterialUI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -43,13 +41,13 @@ export default function SignUp() {
 		email: '',
 		username: '',
 		password: '',
-        first_name:'',
-        last_name:''
+		first_name: '',
+		last_name: ''
 	});
 
 	const [formData, updateFormData] = useState(initialFormData);
-	const [formerrors,setFormErrors]=useState(initialFormData);
-    const [isSubmit,setIssubmit]=useState(false);
+	const [formerrors, setFormErrors] = useState(initialFormData);
+	const [isSubmit, setIssubmit] = useState(false);
 
 	const handleChange = (e) => {
 		updateFormData({
@@ -58,24 +56,24 @@ export default function SignUp() {
 			[e.target.name]: e.target.value.trim(),
 		});
 	};
-	
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(formData);
 		setFormErrors(Validate(formData))
-        setIssubmit(true)
+		setIssubmit(true)
 		console.log(formData);
 
-		
+
 		axios.post(`http://127.0.0.1:8000/register/`, {
-				email: formData.email,
-				user_name: formData.username,
-				password: formData.password,
-                first_name: formData.first_name,
-                last_name: formData.last_name,
-			})
+			email: formData.email,
+			user_name: formData.username,
+			password: formData.password,
+			first_name: formData.first_name,
+			last_name: formData.last_name,
+		})
 			.then((res) => {
-				history('/login');
+				history('/signin');
 				console.log(res);
 				console.log(res.data);
 			});
@@ -83,33 +81,32 @@ export default function SignUp() {
 
 	useEffect(() => {
 		console.log(formerrors);
-		if (Object.keys(formerrors).length===0 && isSubmit){
+		if (Object.keys(formerrors).length === 0 && isSubmit) {
 			console.log(formData);
-	
+
 		}
-	},[formerrors])
-	const Validate=(values)=>
-	{
-		const errors={};
-		const regex=/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
-		if(!values.username){
-			errors.username='Username is required!';
+	}, [formerrors])
+	const Validate = (values) => {
+		const errors = {};
+		const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
+		if (!values.username) {
+			errors.username = 'Username is required!';
 		}
-		if(!values.first_name){
-			errors.first_name='First Name is required!';
+		if (!values.first_name) {
+			errors.first_name = 'First Name is required!';
 		}
-		if(!values.last_name){
-			errors.last_name='Last Name is required!';
-		}
-	
-		if(!values.email){
-			errors.email='email is required!';
+		if (!values.last_name) {
+			errors.last_name = 'Last Name is required!';
 		}
 
-		if(!values.password){
-			errors.password='password  is required!';
-		}else if (values.password <= 10){
-			errors.password='password cannot exceed more than 10 characters';
+		if (!values.email) {
+			errors.email = 'email is required!';
+		}
+
+		if (!values.password) {
+			errors.password = 'password  is required!';
+		} else if (values.password <= 10) {
+			errors.password = 'password cannot exceed more than 10 characters';
 		}
 
 		return errors;
@@ -137,7 +134,7 @@ export default function SignUp() {
 								name="email"
 								autoComplete="email"
 								onChange={handleChange}
-								
+
 							/>
 							<p style={{ color: 'red' }}>{formerrors.email}</p>
 						</Grid>
@@ -155,7 +152,7 @@ export default function SignUp() {
 							<p style={{ color: 'red' }}>{formerrors.username}</p>
 						</Grid>
 
-                        <Grid item xs={12}>
+						<Grid item xs={12}>
 							<TextField
 								variant="outlined"
 								required
@@ -168,7 +165,7 @@ export default function SignUp() {
 							/>
 							<p style={{ color: 'red' }}>{formerrors.first_name}</p>
 						</Grid>
-                        <Grid item xs={12}>
+						<Grid item xs={12}>
 							<TextField
 								variant="outlined"
 								required

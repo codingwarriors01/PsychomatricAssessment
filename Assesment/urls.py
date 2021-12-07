@@ -10,6 +10,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
 	path('register/', CandidateRegister.as_view(), name='CandidateRegister'),
+    
 	path('CandidateRegister', CandidateRegister.as_view(), name='CandidateRegister'),
 	path('api/UserFeedback', UserFeedback.as_view(), name='UserFeedback'),
 	path('api/UserFeedbackList', UserFeedbackList.as_view(), name='UserFeedbackList'),

@@ -123,6 +123,7 @@ class Self_development(models.Model):
 class User_selfdevelop_mapper(models.Model):    
     selfuser_ans=models.CharField(max_length=100)
     self_qid=models.CharField(max_length=100)
+
 class Self_development_User_mapper(models.Model):
     Sq_id=models.CharField(max_length=100)
     Suser_answer=models.CharField(max_length=100)
@@ -160,7 +161,7 @@ class user_feedback(models.Model):
 
 class Result(models.Model):
   # uid=models.ForeignKey(Candidate,on_delete=models.CASCADE)
-  user_cresult=models.CharField(max_length=10)
+  user_cresult=models.IntegerField()
   user_wresult=models.CharField(max_length=10)
   # test_type = models.CharField(max_length=20)
 
