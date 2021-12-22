@@ -40,7 +40,7 @@ export default function ExamInstruction() {
             </Card.Body>
           </Card>
           <div className="text-center">
-            <Link to="/test/reasoning" class="btn btn-primary">I'm Ready to begin</Link>
+            <Link to="/test/aptitute" class="btn btn-primary">I'm Ready to begin</Link>
 
           </div>
         </body>

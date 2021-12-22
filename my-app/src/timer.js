@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import Rating from './starfeedback';
 
 export default function Timer() {
-  const [minutes, setMinutes] = React.useState(10)
-  const [seconds, setSeconds] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0)
+  const [seconds, setSeconds] = React.useState(10);
 
   React.useEffect(() => {
     if (seconds > 0) {

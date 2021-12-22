@@ -91,9 +91,9 @@ class TestViews(TestSetup):
 #Reasoning
 
 
-    def test_Createreasoning(self):
-        res = self.client.post(self.reasoning_url, self.reasoning_data, format="json")
-        self.assertEqual(res.status_code, 201)
+    # def test_Createreasoning(self):
+    #     res = self.client.post(self.reasoning_url, self.reasoning_data, format="json")
+    #     self.assertEqual(res.status_code, 201)
 
 
     def test_user_reasoning(self):

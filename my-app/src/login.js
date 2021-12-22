@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import  { useEffect } from 'react';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios'
+import googleLogin from './GOOGLELOGIN'
 //MaterialUI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import Exam from './exam_page';
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -35,16 +36,25 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignIn() {
+function SignIn() {
+    let uid=0;
+	let username=0;
+
 	const history = useNavigate();
 	const initialFormData = Object.freeze({
 		email: '',
 		password: '',
 	});
 
+
+
 	const [formData, updateFormData] = useState(initialFormData);
-	const [formerrors, setFormErrors] = useState(initialFormData);
-	const [isSubmit, setIssubmit] = useState(false);
+	const [formerrors,setFormErrors]=useState(initialFormData);
+    const [isSubmit,setIssubmit]=useState(false);
+	const[userid,setUserid]=useState('');
+	const[user,setUser]=useState('');
+	const [post, setPost] =useState([]);
+	// const [loggedin,setlogedin]=useState();
 
 	const handleChange = (e) => {
 		updateFormData({
@@ -53,46 +63,75 @@ export default function SignIn() {
 		});
 	};
 
+
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(formData);
 		setFormErrors(Validate(formData))
-		setIssubmit(true)
-		console.log(formData);
+        setIssubmit(true)
+		console.log("pra",formData.email);
 
-
+		
 		axios.post(`http://127.0.0.1:8000/token/`, {
-			email: formData.email,
-			password: formData.password,
-		})
+				email: formData.email,
+				password: formData.password,	
+				
+			})
 			.then((res) => {
+		
 				localStorage.setItem('access_token', res.data.access);
 				localStorage.setItem('refresh_token', res.data.refresh);
 				axios.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
 				history('/exam_dashboard');
+				
 
 			});
 	};
+	console.log("kuuu",formData.id) 
 	useEffect(() => {
+		axios.get('http://127.0.0.1:8000/candidateList/')
+        .then(res=>{
+
+            setPost(res.data)
+            console.log("ppp",res.data[1].id)
+			for (let i=0; i<res.data.length; i++){
+				if (formData.email===res.data[i].email){
+					console.log("userid before set", userid)
+					uid = res.data[i].id;
+					username=res.data[i].user_name;
+					localStorage.setItem('uid', uid);
+					localStorage.setItem('username', username);
+					console.log("userid22", username)
+					setUserid(previd=>previd+uid)
+
+				}
+			}
+	})
 		console.log(formerrors);
-		if (Object.keys(formerrors).length === 0 && isSubmit) {
+		if (Object.keys(formerrors).length===0 && isSubmit){
 			console.log(formData);
-
+	
 		}
-	}, [formerrors])
-	const Validate = (values) => {
-		const errors = {};
-		const regex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
-		if (!values.email) {
-			errors.email = 'Username is required!';
+	
+
+	},[formerrors])
+	console.log("id",uid)
+	
+	const Validate=(values)=>
+	{
+		const errors={};
+		const regex=/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
+		if(!values.email){
+			errors.email='Username is required!';
 		}
 
 
-		if (!values.password) {
-			errors.password = 'password  is required!';
-		} else if (values.password <= 10) {
-			errors.password = 'password cannot exceed more than 10 characters';
+		if(!values.password){
+			errors.password='password  is required!';
+		}else if (values.password <= 10){
+			errors.password='password cannot exceed more than 10 characters';
 		}
 
 		return errors;
@@ -102,27 +141,35 @@ export default function SignIn() {
 		e.preventDefault();
 		console.log(formData);
 
-
+		
 		axios.post(`http://127.0.0.1:8000/auth/token/`, {
-			grant_type: 'Client credentials',
-			client_id: '526809489540-7euftut75c43atfg0vuvon7ormvos431.apps.googleusercontent.com',
-			client_secret:
-				'4ic7X_tU640Ouws1_uJ9ujKn',
-		})
+				grant_type: 'Client credentials',
+				client_id: '526809489540-7euftut75c43atfg0vuvon7ormvos431.apps.googleusercontent.com',
+				client_secret:
+					'4ic7X_tU640Ouws1_uJ9ujKn',
+			})
 			.then((res) => {
 				localStorage.setItem('access_token', res.data.access_token);
-				console.log("kkk", res.data.access_token)
 				localStorage.setItem('refresh_token', res.data.refresh_token);
 				axios.defaults.headers['Authorization'] =
-					'Bearer' + localStorage.getItem('access_token');
+				'Bearer' + localStorage.getItem('access_token');
 				history('/display');
 				window.location.reload();
 			});
 	};
+	const responseGoogle = async (response) => {
+		googleLogin(response.accessToken);
+		console.log("ppp",response)
+		console.log("nnk",response.accessToken)
+	};
+
+	<Exam username= {username} />
 
 	const classes = useStyles();
 
 	return (
+
+
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
@@ -188,4 +235,5 @@ export default function SignIn() {
 			</div>
 		</Container>
 	);
-}
+}	
+export default SignIn

@@ -3,7 +3,7 @@ import './Aptitude.css';
 import './question_numbers.css';
 import Card from "react-bootstrap/Card";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,7 +40,7 @@ export default function Questionpaper(props) {
 
 
   const StoreResult = async () => {
-    const data = [{ q_id: q_id, user_answer: answer }]
+    const data = { q_id: q_id, user_answer: answer }
     console.log("data", data);
 
     await axios.post("http://127.0.0.1:8000/User_Aptitude_mapperAPI", JSON.stringify(data), {
@@ -95,8 +95,8 @@ export default function Questionpaper(props) {
           <div class="card-body">
 
             <button className="btn btn-dark" onClick={() => { props.updateProps(Number(props.id) - 1 === 0 ? 1 : Number(props.id) - 1) }}> &larr; Previous</button>
-            <button className="btn btn-primary" style={{ visibility: q_id === 10 ? 'visible' : "hidden", marginLeft: "40px" }}>Submit</button>
-            <button className="btn btn-dark" style={{ marginLeft: "40px" }} onClick={() => { saveAndNext(); notify() }}>Save & Next &rarr; </button>
+            <Link to="/exam_dashboard"  className="btn btn-primary" style={{visibility:q_id===10? 'visible':"hidden", marginLeft:"40px"}} onClick={()=>{saveAndNext();notify()}}>Submit</Link>
+            <button className="btn btn-dark"  style={{visibility:q_id===10? "hidden":"visible", marginLeft:"40px"}} onClick={() => { saveAndNext(); notify() }}>Save & Next &rarr; </button>
 
           </div>
         </div>
