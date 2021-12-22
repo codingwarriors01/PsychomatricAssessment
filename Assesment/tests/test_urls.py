@@ -25,9 +25,9 @@ class TestSetup(APITestCase):
     
     
     
-    def test_indexpage(self):
-        response = self.client.get(reverse('indexpage'))
-        self.assertEqual(response.status_code, 200) 
+    # def test_indexpage(self):
+    #     response = self.client.get(reverse('indexpage'))
+    #     self.assertEqual(response.status_code, 200) 
    
     def test_basepage(self):
         response = self.client.get(reverse('basepage'))
@@ -85,10 +85,10 @@ class TestSetup(APITestCase):
         response = self.client.get(reverse('developmentselflist'))
         self.assertEqual(response.status_code, 200)
 
-    def test_Reasoningcreate(self):
-        response = self.client.post(reverse('reasoning'),
-                                    data={'question_id': 'question_id', 'question': 'question','option_1':'option_1','option_2':'option_2','option_3':'option_3','option_4':'option_4','answer':'answer'})
-        self.assertEqual(response.status_code, 201)
+    # def test_Reasoningcreate(self):
+    #     response = self.client.post(reverse('reasoning'),
+    #                                 data={'question_id': 'question_id', 'question': 'question','option_1':'option_1','option_2':'option_2','option_3':'option_3','option_4':'option_4','answer':'answer'})
+    #     self.assertEqual(response.status_code, 201)
 
     def test_Reasoning_List(self):
         response = self.client.get(reverse('questionsList'))

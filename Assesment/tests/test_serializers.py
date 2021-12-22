@@ -35,34 +35,6 @@ class TestViews(APITestCase):
         self.assertEqual(data['question'], self.appti_attributes['question'])
 
         
-        
-        
-    #     self.userapptimapper_attributes={
-    #         'id':'2',
-    #         'q_id':'1',
-    #         'user_answer': 'user_answer',
-
-    #     }    
-    #     self.userapptimapper_data={
-    #         'id':'2',
-    #         'q_id':'1',
-    #         'user_answer': 'user_answer1',
-    #     }
-    #     self.apptimapper = User_Aptitude_mapper.objects.create(**self.userapptimapper_attributes)
-    #     self.serializer = User_Aptitude_mapper_Serializer(instance=self.apptimapper)
-        
-    # def test_userappticontains_expected_fields(self):
-    #     data1 = self.serializer.data
-
-    #     self.assertEqual(set(data1.keys()),set(['q_id','user_answer']))
-
-    # def test_useraptiserializer_field_content(self):
-    #     data1 = self.serializer.data
-    #     import pdb
-    #     pdb.set_trace()
-
-    #     self.assertEqual(data1['q_id'], self.appti_attributes['q_id'])          
-
 
     def tearDown(self):
         return super().tearDown()        

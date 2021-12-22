@@ -1,9 +1,0 @@
-#list::before{
-    content: "\00BB";
-    color: red;
-    font-size: 30px;
-    font-weight: bold;
-}
-#list{
-    list-style: none;
-}

@@ -1,5 +1,12 @@
 import json
+import csv
 
+from django.core.files.base import ContentFile
+from django.core.files.storage import FileSystemStorage
+
+from rest_framework import serializers, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from rest_framework import generics, status
@@ -20,6 +27,7 @@ def indexpage(request):
 def basepage(request):
     return render(request, 'assesment_system/base.html')
 
+fs = FileSystemStorage(location='tmp/')
 
 
 class CandidateRegister(APIView):
@@ -53,9 +61,62 @@ class user_details_operation(generics.RetrieveUpdateDestroyAPIView):
 def candidatelogin(request):
     return render(request, 'assesment_system/login.html')
 
+#Csv file upload
+
+class CandidateViewSet(viewsets.ModelViewSet):
+  
+  
+    queryset = Candidate.objects.all()
+    serializer_class = CustomUserSerializer
+
+    @action(detail=False, methods=['POST'])
+    def upload_data(self, request):
+       
+        file = request.FILES["file"]
+
+        content = file.read()  # these are bytes
+        file_content = ContentFile(content)
+        file_name = fs.save(
+            "_tmp.csv", file_content
+        )
+        tmp_file = fs.path(file_name)
+
+        csv_file = open(tmp_file, errors="ignore")
+        reader = csv.reader(csv_file)
+        next(reader)
+        
+        product_list = []
+        for email, row in enumerate(reader):
+            (
+                email,
+                user_name,
+                first_name,
+                last_name,
+               
+              
+            ) = row
+            product_list.append(
+                Candidate(
+                    email=email,
+                    user_name=user_name,
+                    first_name=first_name,
+                    last_name=last_name,
+                  
+                  
+                )
+            )
+
+        Candidate.objects.bulk_create(product_list)
+
+        return Response("Successfully upload the data")
 
 
 
+
+
+
+
+#Aptitude
 class ApptitudeAPI(generics.GenericAPIView):
     serializer_class = AptitudeSerializer
     def post(self, request, *args, **kwargs):
@@ -244,9 +305,9 @@ class User_selfdevelop_mapperList(APIView):
 
 #by gaurav
 
-class ReasoningAPI(generics.CreateAPIView):
-    queryset = Reasoning.objects.all()
-    serializer_class = ReasoningSerializer
+# class ReasoningAPI(generics.CreateAPIView):
+#     queryset = Reasoning.objects.all()
+#     serializer_class = ReasoningSerializer
 
     
 

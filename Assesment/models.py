@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
@@ -43,10 +44,12 @@ class Candidate(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     start_date = models.DateTimeField(default=timezone.now)
+
     about = models.TextField(_(
         'about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     objects = CustomAccountManager()
 
@@ -65,12 +68,12 @@ class Candidate(AbstractBaseUser, PermissionsMixin):
 
 class Aptitude(models.Model):
   q_id=models.AutoField(primary_key=True)
-  question=models.CharField(max_length=100)
+  question=models.CharField(max_length=900)
   q_option1=models.CharField(max_length=100)
   q_option2=models.CharField(max_length=100)
   q_option3=models.CharField(max_length=100)
   q_option4=models.CharField(max_length=100)
-  q_ans=models.CharField(max_length=100,unique=True)
+  q_ans=models.CharField(max_length=100)
 
   def __str__(self):
       return self.question
@@ -115,7 +118,7 @@ class Self_development(models.Model):
     self_option4=models.CharField(max_length=100)
     self_option5=models.CharField(max_length=100)
     self_option6=models.CharField(max_length=100)
-
+    
     def __str__(self):
         return self.self_question
 
