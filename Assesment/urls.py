@@ -7,8 +7,14 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from rest_framework import routers
+from Assesment.views import CandidateViewSet
 
-urlpatterns = [
+router = routers.SimpleRouter()
+router.register("candidateList", CandidateViewSet)
+urlpatterns = router.urls
+
+urlpatterns += [
 	path('register/', CandidateRegister.as_view(), name='CandidateRegister'),
     
 	path('CandidateRegister', CandidateRegister.as_view(), name='CandidateRegister'),
@@ -20,7 +26,7 @@ urlpatterns = [
 	path('user_details_operation/<int:pk>/', user_details_operation.as_view(), name='user_details_operation'), #Crud operation on candidate by Pratiksha 
     path('candidateshow/<int:pk>/', CandidateRetrive.as_view()),
     path('update/<int:pk>/',CandidateUpdate.as_view()),
-    path('delete/<int:pk>/', CandidateDestroy.as_view()),
+    path('delete/<int:pk>', CandidateDestroy.as_view()),
 	path('candidatelogin/',views.candidatelogin,name="candidatelogin"),
 	path('Apptitude', ApptitudeAPI.as_view(), name='Apptitude'),
 	path('ApptitudeList', ApptitudeList.as_view(), name='ApptitudeList'),
@@ -87,7 +93,7 @@ urlpatterns = [
 	path('SelfdevelopeUserDelete/<int:pk>', Self_development_User_mapperDeleteApi.as_view(), name='SelfdevelopeUserDelete'),
 
 
-    path('reasoning', ReasoningAPI.as_view(), name='reasoning'),
+    # path('reasoning', ReasoningAPI.as_view(), name='reasoning'),
 	path('questionsList', views.QuestionPage,name='questionsList'),
 	path('result', views.Resultlist, name='result'),
  	path('view', ReasoningViewApi.as_view(), name='view'),
@@ -96,7 +102,7 @@ urlpatterns = [
 	path('', views.index, name='index'),
     path('profilelist', views.ProfileList.as_view(), name='reasoning'),
     path('questions', views.QuestionPage),
-    path('create', ReasoningCreateApi.as_view(), name='create'),
+    path('reasoning', ReasoningCreateApi.as_view(), name='create'),
     path('show/<int:pk>',ReasoningShow.as_view(), name='show'),
     path('updatereasoning/<int:pk>',ReasoningUpdateApi.as_view(), name='update'),
 	path('login/',UserLoginView.as_view()),	         # by pratiksha 

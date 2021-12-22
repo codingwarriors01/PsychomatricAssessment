@@ -93,6 +93,8 @@ class TestViews(TestSetup):
 
     # def test_Createreasoning(self):
     #     res = self.client.post(self.reasoning_url, self.reasoning_data, format="json")
+    #     # import pdb
+    #     # pdb.set_trace()
     #     self.assertEqual(res.status_code, 201)
 
 
