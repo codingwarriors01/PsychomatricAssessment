@@ -7,7 +7,7 @@ import '../App.css'
 
 
 const theme = {
-  background: '#f5f8fb',
+  background: '#f5f800',
   fontFamily: 'Helvetica Neue',
   headerBgColor: '#3736a4',
   headerFontColor: '#fff',
