@@ -7,7 +7,7 @@ import '../App.css'
 
 
 const theme = {
-  background: '#f5f800',
+  background: '#f5f8fb',
   fontFamily: 'Helvetica Neue',
   headerBgColor: '#3736a4',
   headerFontColor: '#fff',
@@ -207,11 +207,11 @@ const Chatbot = (props) => {
       </div>
       <div>
         {!showChat ? (
-          <button className="btn" onClick={() => startChat()}>
+          <button className="btn chat" onClick={() => startChat()}>
             <i class="fas fa-times fa-2x"></i>
           </button>
         ) : (
-          <button className="btn" onClick={() => hideChat()}>
+          <button className="btn chat" onClick={() => hideChat()}>
             <i class="fas fa-comments fa-2x"></i>
           </button>
         )}

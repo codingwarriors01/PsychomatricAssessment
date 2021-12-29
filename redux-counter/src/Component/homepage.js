@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <>
             <NavBar />
-			<Chatbot/>
+			
             <section id="home">
                 <div class="jumbotron text-center home-img">
                     <h1 class="banner-title">Welcome to Assesment</h1>
@@ -118,6 +118,10 @@ export default function Home() {
 			</div>
 		</div>
 	</section>
+
+	<div style={{marginLeft: "72%", marginTop: "-76.5%"}}>
+	<Chatbot/>
+	</div>
 
         </>
     )

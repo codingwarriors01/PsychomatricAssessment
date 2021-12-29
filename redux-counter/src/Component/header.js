@@ -1,14 +1,11 @@
 import React from 'react';
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import '../ComponentStyle/header.css';
-import {Router, Routes, Route, Link} from 'react-router-dom';
-import ExamDashborad from './exam_dashboard';
-// import QuestionNumber from './question_numbers';
+import {Link} from 'react-router-dom';
 import  { useEffect,useState } from 'react';
-import Path from './urls';
-import Login from './login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.js';
 import {useNavigate} from 'react-router-dom';
 export default function NavBar(props)
 {
@@ -16,7 +13,6 @@ export default function NavBar(props)
        const [uid,setUid]=useState('');
        const history=useNavigate();  
        useEffect(()=>{
-        console.log("uidddd222222222",localStorage.getItem('uid'));
         setUid(localStorage.getItem('username'));
         setimg(localStorage.getItem('image'));
     },[]);   
@@ -39,7 +35,6 @@ export default function NavBar(props)
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
             
     
-    {/* <link rel="stylesheet" href="{% static 'style/style.css' %}" /> */}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
      
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -65,16 +60,7 @@ export default function NavBar(props)
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
-                    {localStorage.getItem('access_token')?
-                    <li class="nav-item">
-                        <a class="nav-link" onClick={()=>{history('/logout')}} >LOGOUT</a>
-                    </li>
-                    : null}
-
-
-                    {/* <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li> */}
+                    
                     {!localStorage.getItem('access_token')? 
                     <li class="nav-item">
                         <div class="row social-network" style={{marginLeft: "20px"}}>
@@ -88,10 +74,27 @@ export default function NavBar(props)
                         <Link to="/signin" class="btn btn-primary">Sign in</Link>
 
                                 </li>
-                                : <div>
-                               <img src={imd} style={{height:"30px", width:"30px", borderRadius:"50%"}} className='img-rounded'/>
-                                      <p className="fw-bold" >{cid}</p>
-                                      </div>}
+
+: <div style={{ marginLeft: "110px"}} className="text-center">
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src={imd} style={{height:"30px", width:"30px", borderRadius:"50%"}} className='img-rounded'/>
+    </a>
+    <ul class="dropdown-menu" style={{marginLeft:"-70px"}} aria-labelledby="navbarDropdown">
+        <li><p className="dropdown-header fw-bold">{cid}</p></li>
+        <li><a class="dropdown-item" href="#">Manage Your Account</a></li>
+        <li><hr class="dropdown-divider"/></li>
+        <li><a class="dropdown-item" href="#">{localStorage.getItem('access_token') ?
+            <li class="nav-item">  
+                <a class="nav-link" onClick={() => { history('/logout') }} ><i class="fas fa-power-off"></i> &nbsp; LOGOUT</a>
+            </li>
+        : null}
+                </a>
+        </li>
+    </ul>
+</li>
+</div>}
+
                     {!localStorage.getItem('access_token')?             
                     <li class="nav-item" style={{marginLeft: "20px"}}>
                         <Link to="/admin" class="btn btn-primary">Admin</Link>
