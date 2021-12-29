@@ -73,6 +73,46 @@
     border-radius: 50%;
     color: #fff;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Heebo:300&display=swap');
+.bot {
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  position: fixed;
+  width: 350px;
+  z-index: 94;
+}
+.chat {
+  position: fixed;
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 20px;
+  margin-bottom: -35px;
+  float: right;
+  background-color: #3736a4;
+  color: #fff;
+  border-radius: 50px !important;
+  text-align: center !important;
+  box-shadow: 2px 2px 3px #999;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.btn:focus {
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+.img {
+  height: 200px;
+  width: 300px;
+}
+
+
 /*  */
 
 @keyframes App-logo-spin {
