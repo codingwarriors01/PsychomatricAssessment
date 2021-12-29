@@ -3,6 +3,7 @@ import NavBar from './header';
 import '../ComponentStyle/homepage.css';
 
 export default function Home() {
+
     return (
         <>
             <NavBar />
@@ -13,6 +14,108 @@ export default function Home() {
                     <button class="btn btn-primary">GET STARTED</button>
                 </div>
             </section>
+
+            <section id="features" class="section-gap">
+		<div class="container">
+			<div class="heading-title" style={{paddingBottom: "0px"}}>
+				<h2>Services</h2>
+				<span style={{color:"#0f90dcde"}}>---- <i class="fa fa-suitcase"></i> ---- </span>
+				<p>Magnam dalores commodi suscipit conseqatur ex aliquid</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-suitcase"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title">Special Title Treatment</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-newspaper-o"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title">Lorem Lpsum</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-signal"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title"i>Title Treatment</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-binoculars"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title">Sitemap</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-cog"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title">Settings</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+				<div class="col-sm-6">
+				    <div class="card features-details">
+				      	<div class="card-body">
+				      		<div class="d-flex bd-highlight">
+				      			<div class="p-2 flex-shrink-1 bd-highlight">
+				      				<span class="feature-icon"><i class="fa fa-envelope-o"></i></span>
+				      			</div>
+							  	<div class="p-2 w-100 bd-highlight">
+							  		<h5 class="card-title">Gmail</h5>
+				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  	</div>
+							</div>
+				      	</div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</section>
 
         </>
     )

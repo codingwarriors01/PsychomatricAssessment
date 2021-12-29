@@ -13,6 +13,7 @@ export default function SideNav() {
   const [Firocolor, setFiroColor] = useState("white");
   const [Verbalcolor, setVerbalColor] = useState("white");
   const [Aicolor, setAIColor] = useState("white");
+  const [Ai2color, setAI2Color] = useState("white");
   return (
     <>
       <html>
@@ -23,11 +24,12 @@ export default function SideNav() {
         <body>
           <div class="d-flex align-items-start">
             <div class="nav flex-column  me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style={{ backgroundColor: "black" }}>
-              <button class="nav-link active btn btn-link" style={{ color: Apticolor }} onClick={() => { setAptiColor("orange"); setAIColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><strong>Aptitude</strong></button>
-              <button class="nav-link btn btn-link" style={{ color: Reasoningcolor }} onClick={() => { setReasoningColor("orange"); setAIColor("white"); setAptiColor("white"); setVerbalColor("white"); setFiroColor("white") }} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><strong>Reasoning</strong></button>
-              <button class="nav-link btn btn-link" style={{ color: Firocolor }} onClick={() => { setFiroColor("orange"); setAIColor("white"); setAptiColor("white"); setReasoningColor("white"); setVerbalColor("white") }} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><strong>FIRO B</strong></button>
-              <button class="nav-link btn btn-link" style={{ color: Verbalcolor }} onClick={() => { setVerbalColor("orange"); setAIColor("white"); setAptiColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><strong>Verbal</strong></button>
-              <button class="nav-link btn btn-link" style={{ color: Aicolor }} onClick={() => { setAIColor("orange"); setAptiColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-assist-tab" data-bs-toggle="pill" data-bs-target="#v-pills-assist" type="button" role="tab" aria-controls="v-pills-assist" aria-selected="false"><strong>AI Assist</strong></button>
+              <button class="nav-link active btn btn-link" style={{ color: Apticolor }} onClick={() => { setAptiColor("orange"); setAI2Color("white"); setAIColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><strong>Aptitude</strong></button>
+              <button class="nav-link btn btn-link" style={{ color: Reasoningcolor }} onClick={() => { setReasoningColor("orange"); setAI2Color("white"); setAIColor("white"); setAptiColor("white"); setVerbalColor("white"); setFiroColor("white") }} id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><strong>Reasoning</strong></button>
+              <button class="nav-link btn btn-link" style={{ color: Firocolor }} onClick={() => { setFiroColor("orange"); setAIColor("white"); setAI2Color("white"); setAptiColor("white"); setReasoningColor("white"); setVerbalColor("white") }} id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"><strong>FIRO B</strong></button>
+              <button class="nav-link btn btn-link" style={{ color: Verbalcolor }} onClick={() => { setVerbalColor("orange"); setAI2Color("white"); setAIColor("white"); setAptiColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><strong>Verbal</strong></button>
+              <button class="nav-link btn btn-link" style={{ color: Aicolor }} onClick={() => { setAIColor("orange"); setAI2Color("white"); setAptiColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white") }} id="v-pills-assist-tab" data-bs-toggle="pill" data-bs-target="#v-pills-assist" type="button" role="tab" aria-controls="v-pills-assist" aria-selected="false"><strong>AI Assist</strong></button>
+              <button class="nav-link btn btn-link" style={{ color: Ai2color }} onClick={() => { setAI2Color("orange"); setAptiColor("white"); setVerbalColor("white"); setReasoningColor("white"); setFiroColor("white"); setAIColor("white") }} id="v-pills-assist2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-assist2" type="button" role="tab" aria-controls="v-pills-assist2" aria-selected="false"><strong>AI</strong></button>
             </div>
             <div class="tab-content" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -56,7 +58,7 @@ export default function SideNav() {
                       <div class="card-body">
                         <h5 class="card-title">Reasoning</h5>
                         <p><strong>Topics:</strong> Number Series, Blood Relation, Age Based, Syllogs, Coding-Decoding, Seating Arrangements, Direction</p>
-                        <Link to="/demo"  state={{ from: 'Reasoning'}} class="btn btn-info">Take a Tour Test</Link>
+                        <Link to="/demo" state={{ from: 'Reasoning'}} class="btn btn-info">Take a Tour Test</Link>
                       </div>
                     </div>
                   </div>
@@ -72,7 +74,7 @@ export default function SideNav() {
                       <div class="card-body">
                         <h5 class="card-title">FIRO B</h5>
                         <p><strong>Topics:</strong> Focuses on personal characteristics and behaviours that influence how an individuals perform in work settings.</p>
-                        <Link to="/demo"  state={{ from: 'SelfdevelopmentQuestions' }} class="btn btn-info">Take a Tour Test</Link>
+                        <Link to="/demo" state={{ from: 'SelfdevelopmentQuestions' }} class="btn btn-info">Take a Tour Test</Link>
                       </div>
                     </div>
                   </div>
@@ -111,9 +113,29 @@ export default function SideNav() {
                   </div>
                 </div>
               </div>
+              <div class="tab-pane fade" id="v-pills-assist2" role="tabpanel" aria-labelledby="v-pills-assist2-tab">
+                <div class="card mb-3 col-md-6">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src={Test4} class="img-fluid rounded-start" alt="" />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Algorithms</h5>
+                        <p>The word Algorithm means a process or set of rules to be followed in calculations or other problem-solving operations. Therefore Algorithm refers to a set of rules/instructions that step-by-step define how a work is to be executed upon in order to get the expected results. </p>
+                        <Link to="/AlgoPage" state={{ from: 'AI'}} class="btn btn-info">Take a Tour </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
+          
+
+         
+
         </body>
       </html>
     </>

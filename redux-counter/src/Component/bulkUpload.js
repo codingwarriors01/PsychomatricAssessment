@@ -26,7 +26,7 @@ function BulkUpload() {
     let formData = new FormData();
     formData.append('file', selectedFile);
     await axios.post(
-      'http://localhost:8000/users/upload_data/', 
+      'http://localhost:8000/candidate/upload_data/', 
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
@@ -48,30 +48,25 @@ function BulkUpload() {
     {return n;}
   }
   const roleChange = (e,index) => {
-    
-    let x=post.map((n,ind)=>postmodify(n,ind,index,e.target.value));
-    console.log("x",x);
-    // axios.get('http://localhost:8000/candidateList/')
-    // .then(res=>{
-      
-    //   console.log("admin", res.data)
-    //   for(let i=0; i<res.data.length; i++) {
-    //     if(e.target.value==='user'){
-        
-          
-    //       res.data[i].is_staff=false;
-        
-    //     }
-    //     else{
-    //       res.data[i].is_staff=true;
-    //     }
-    //     console.log("is staff", res.data[i]);
-    //   }
-
-    // })
-   
+    let role=post.map((n,ind)=>postmodify(n,ind,index,e.target.value));
+    console.log("role",role);
+    setStaff(role);
+    console.log("type of role", typeof(role));
     
   } 
+
+  const handleRole = async () => {
+    console.log("staff", staff)
+    console.log("type", typeof(JSON.stringify(staff)));
+    try{
+    await axios.post('http://localhost:8000/register/',staff,
+    { headers: { 'Content-Type':'application/json' } }
+    );
+    }catch(err){
+             console.log("error",err);
+    }
+  }
+
     return (
         <>
         <div className='container-fluid'>
@@ -129,10 +124,7 @@ function BulkUpload() {
     </tbody>
     </table>
     <div className="text-center">
-    <button className="btn btn-primary" onClick={(event)=>{
-      console.log(ar)
-      
-    }}>Submit</button>
+    <button className="btn btn-primary" onClick={handleRole}>Submit</button>
     </div>
     </div>
     </>
