@@ -89,7 +89,7 @@ export default function NavBar(props)
 
                                 </li>
                                 : <div>
-                               <img src={imd} style={{height:"100px", width:"100px", borderRadius:"50%"}} className='img-rounded'/>
+                               <img src={imd} style={{height:"30px", width:"30px", borderRadius:"50%"}} className='img-rounded'/>
                                       <p className="fw-bold" >{cid}</p>
                                       </div>}
                     {!localStorage.getItem('access_token')?             
