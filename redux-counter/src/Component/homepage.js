@@ -1,12 +1,14 @@
 import React from 'react';
 import NavBar from './header';
 import '../ComponentStyle/homepage.css';
+import Chatbot from './Chatbot';
 
 export default function Home() {
 
     return (
         <>
             <NavBar />
+			<Chatbot/>
             <section id="home">
                 <div class="jumbotron text-center home-img">
                     <h1 class="banner-title">Welcome to Assesment</h1>
