@@ -70,10 +70,22 @@ export default function NavBar(props)
                     </li>
                     :null}
                     {!localStorage.getItem('access_token')? 
-                   <li class="nav-item" style={{marginLeft: "20px"}}>
-                        <Link to="/signin" class="btn btn-primary">Sign in</Link>
 
-                                </li>
+<li class="nav-item dropdown" style={{marginLeft: "20px"}}>
+<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  Sign In
+</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<li><p className="dropdown-header fw-bold">Sign In as</p></li>
+  <li><Link to="/signin" class="dropdown-item" href="#">User</Link></li>
+  <li><Link to="/admin" class="dropdown-item" href="#">Admin</Link></li>
+</ul>
+</li>
+
+                //    <li class="nav-item" style={{marginLeft: "20px"}}>
+                //         <Link to="/signin" class="nav-link">Sign in</Link>
+
+                //                 </li>
 
 : <div style={{ marginLeft: "110px"}} className="text-center">
 <li class="nav-item dropdown">
@@ -95,12 +107,12 @@ export default function NavBar(props)
 </li>
 </div>}
 
-                    {!localStorage.getItem('access_token')?             
-                    <li class="nav-item" style={{marginLeft: "20px"}}>
-                        <Link to="/admin" class="btn btn-primary">Admin</Link>
+                    {/* {!localStorage.getItem('access_token')?             
+                    <li class="nav-item">
+                        <Link to="/admin" class="nav-link">Admin</Link>
 
                                 </li>  
-                                 :null}    
+                                 :null}     */}
                     {!localStorage.getItem('access_token')?                   
                    <li class="nav-item" style={{marginLeft: "20px"}}>
                    <Link to="/signup" class="btn btn-info">Register</Link>

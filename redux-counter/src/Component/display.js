@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
+import NavBar from './header';
 
 export default function AdminDisplay(){
 
@@ -38,14 +39,18 @@ export default function AdminDisplay(){
 
  
     return(
+      <>
+      <NavBar />
         
         <html>
           <head>
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" ></link>
             
           </head>
           <body>
          <br/>
+         <div className='container'>
          <table class="table table-bordered">
          <thead>
            <tr class="table-info">
@@ -66,20 +71,21 @@ export default function AdminDisplay(){
                  <td>{posts.last_name}</td>
                 <td>{posts.email}</td>
                
-                <td><button onClick={()=>Update(posts.id)} className="btn btn-primary" >Edit</button>
-                <br/>
-                <br/>
-                <button  onClick={()=>Delete(posts.id)} className="btn btn-primary" >Delete</button></td>
+                <td><button onClick={()=>Update(posts.id)} className="btn" ><i class="fas fa-edit"></i></button>
+                
+                <button  onClick={()=>Delete(posts.id)} className="btn" ><i class="fas fa-trash-alt"></i></button></td>
                </tr>)  
 }
              </tbody>
              </table>
+             </div>
              <button onClick={()=>{history('/logout')}}>LOGOUT</button>
 
        
         
         </body>
         </html>
+        </>
         )
          
     }

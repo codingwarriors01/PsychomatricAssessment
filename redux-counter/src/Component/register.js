@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import  { useEffect } from 'react';
@@ -214,9 +213,6 @@ const handleImageChange = (e) => {
 							/>
 							<p style={{ color: 'red' }}>{formerrors.password}</p>
 						</Grid>
-            {/* <input type="file"
-                   id="image"
-                   accept="image/png, image/jpeg"  onChange={handleImageChange} required/> */}
                    <div>
     						<input
 							accept="image/png, image/jpeg"
@@ -226,20 +222,9 @@ const handleImageChange = (e) => {
 							name="image"
 							type="file"
 						/>
-            {/* <img  src='http://127.0.0.1:8000/{image}'  alt={''}/> */}
 
           </div>
           </Grid>
-					{/* <Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}
-						onClick={handleSubmit}
-					>
-						Create Post
-					</Button> */}
 
 					<Button
 						type="submit"
