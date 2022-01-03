@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../ComponentStyle/exam_page.css';
-import {Nav, Navbar, NavDropdown, MenuItem,  Tabs, ButtonToolbar, Button, Table, ButtonGroup, Row, Col, Grid, Panel, FormGroup, FormControl, Container} from 'react-bootstrap';
-import Footer from './footer';
 import VerbalQuestionpaper from './verbalquestion';
 import store from './store';
 import Questionpaper from './Aptitude';
-import StoreResult from './Aptitude';
 import Questions from './questions';
-import App from './urls';
-import uid from './login';
 import Timer from './timer';
-import SelfdevelopmentQuestions from './Self_development';
-// import { propTypes } from 'react-bootstrap/esm/Image';
-// import { queryAllByDisplayValue } from '@testing-library/dom';
-import {Router, Routes, Route, Link,  useParams,} from 'react-router-dom';
-import Loader from 'react-loader-spinner';
+import SelfdevelopmentQuestions from './Self_development'; 
+import {useParams} from 'react-router-dom';
 import PageLoader from './loader';
-// import { data } from 'jquery';
-import { useSelector } from 'react-redux';
-// import s3 from 'C:\Users\dell\Desktop\practiceset\django assesment\media\profile_pics'
- export default function Exam(props){
+export default function Exam(props){
    
-
 let data={}
 data=store.getState().SignInReducer.username.username
 console.log("state",store.getState().SignInReducer)
@@ -74,19 +62,15 @@ else
          <head>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
          </head>
   <body>
 
   <nav class="navbar navbar-light bg-color d-flex justify-content-between" style={{height:"100px"}} >
       <div></div>
       <Timer/>
-  <div className="user_style text-center">
-  {/* <i class="fas fa-user-tie fa-3x" style={{marginLeft:"10px"}}></i> */}
-        {/* <p className="fw-bold" >{data}</p> */}
-        {/* <p className="fw-bold" >{cid}</p> */}
-        {/* <img src={s3} style={{height:"100px", width:"100px", borderRadius:"50%"}} className='img-rounded' /> */}
-        <img src={imd} style={{height:"100px", width:"100px", borderRadius:"50%"}} className='img-rounded'/>
+  <div className="text-center">
+        <img src={imd} style={{height:"60px", width:"60px", borderRadius:"50%"}} className='img-rounded'/>
         
         <p className="fw-bold" >{cid}</p>
  

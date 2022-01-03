@@ -6,6 +6,8 @@ import '../ComponentStyle/exam-instruction.css'
 export default function ExamInstruction() {
   const[url,setUrl]=useState('')
   const location = useLocation()
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [checked, setChecked] = useState(false);
   console.log("location ",location.state.from)
  
   useEffect(()=>{
@@ -21,6 +23,15 @@ export default function ExamInstruction() {
       setUrl('/test/assist')
     }
   },[])
+
+  const canBeSubmitted = () => {
+    return checked ? setIsDisabled(true) : setIsDisabled(false);
+  };
+
+  const onCheckboxClick = () => {
+    setChecked(!checked);
+    return canBeSubmitted();
+  };
   
   return (
     <>
@@ -49,7 +60,7 @@ export default function ExamInstruction() {
                   <li id="list">If you breach any examination rules, you will be disqualified.</li>
                 </ul>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={onCheckboxClick} />
                   <label class="form-check-label" for="flexCheckDefault">
                     I have read and understood the exam rules & requirements for this exam, I agree to Continue.
                   </label>
@@ -58,7 +69,7 @@ export default function ExamInstruction() {
             </Card.Body>
           </Card>
           <div className="text-center">
-            <Link to={ url} class="btn btn-primary">I'm Ready to begin</Link>
+           <button class="btn btn-primary" type='button' disabled={isDisabled}><Link to={url} style={{color:"white"}}>I'm Ready to begin</Link></button>
 
           </div>
         </body>

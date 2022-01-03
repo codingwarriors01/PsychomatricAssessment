@@ -28,7 +28,7 @@ const config = {
 }
 
 const Chatbot = (props) => {
-  let [showChat, setShowChat] = useState(false)
+  let [showChat, setShowChat] = useState(true)
 
   const startChat = () => {
     setShowChat(true)
