@@ -47,7 +47,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class CandidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidate
-        fields = ('id','username','first_name', 'last_name','email','password','contact_no')
+        fields = ('user_name','first_name', 'last_name','email','password')
 
     def create(self, validated_data):
         apptitude = Candidate.objects.create(**validated_data)

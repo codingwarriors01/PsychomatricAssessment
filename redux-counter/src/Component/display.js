@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import NavBar from './header';
 
 export default function AdminDisplay(){
@@ -14,14 +14,14 @@ export default function AdminDisplay(){
         .then(res=>{
 
             setPost(res.data)
-            console.log("ppp",res.data[1].id)
+            
         })
 
         .catch(err=>{
             // console.log(err)
         })
     },[])
-    console.log("vaish",post.data)
+  
 
     function Update(id){
       history('/update/'+id)
@@ -41,7 +41,7 @@ export default function AdminDisplay(){
     return(
       <>
       <NavBar />
-        
+        <br/><br/><br/>
         <html>
           <head>
           <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
@@ -59,8 +59,9 @@ export default function AdminDisplay(){
            <th scope="col-2">First Name</th>
            <th scope="col-2">Last Name</th>
            <th scope="col-3">Email</th>
-          
+           <th scope="col-3">Image</th>
            <th scope="col-3">Action</th>
+           <th scope="col-3">Result</th>
            </tr>
          </thead>
          <tbody>
@@ -70,17 +71,19 @@ export default function AdminDisplay(){
                 <td>{posts.first_name}</td>
                  <td>{posts.last_name}</td>
                 <td>{posts.email}</td>
+                <td>
+                <img src={posts.image} style={{height:"70px", width:"70px", borderRadius:"50%"}} />
+                </td>
                
                 <td><button onClick={()=>Update(posts.id)} className="btn" ><i class="fas fa-edit"></i></button>
                 
                 <button  onClick={()=>Delete(posts.id)} className="btn" ><i class="fas fa-trash-alt"></i></button></td>
+                <td><Link to="/view_result">View Result</Link></td>
                </tr>)  
 }
              </tbody>
              </table>
              </div>
-             <button onClick={()=>{history('/logout')}}>LOGOUT</button>
-
        
         
         </body>
@@ -89,7 +92,3 @@ export default function AdminDisplay(){
         )
          
     }
-
-   
-    
-

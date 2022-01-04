@@ -14,6 +14,7 @@ export default function NavBar(props)
        const history=useNavigate();  
        useEffect(()=>{
         setUid(localStorage.getItem('username'));
+    
         setimg(localStorage.getItem('image'));
     },[]);   
     

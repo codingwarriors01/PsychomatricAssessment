@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import  { useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import axios from 'axios'
-// import GoogleLogin from 'react-google-login';
-// import googleLogin from './GOOGLELOGIN'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';

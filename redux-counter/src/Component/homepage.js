@@ -119,7 +119,7 @@ export default function Home() {
 		</div>
 	</section>
 
-	<div style={{marginLeft: "72%", marginTop: "-76.5%"}}>
+	<div style={{marginLeft: "72%", marginTop: "-76.5%", position:"fixed"}}>
 	<Chatbot/>
 	</div>
 
