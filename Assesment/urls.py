@@ -24,7 +24,7 @@ urlpatterns += [
 	path('userfeedback/',views.userfeedback,name="userfeedback"),
 	path('CandidateRegister/', CandidateRegister.as_view(), name='CandidateRegister'),
 	path('user_details_operation/<int:pk>/', user_details_operation.as_view(), name='user_details_operation'), #Crud operation on candidate by Pratiksha 
-    path('candidateshow/<int:pk>/', CandidateRetrive.as_view()),
+    path('candidateshow/<int:pk>/', CandidateRetrive.as_view(),name="CandidateRetrive"),
     path('update/<int:pk>/',CandidateUpdate.as_view()),
     path('delete/<int:pk>', CandidateDestroy.as_view()),
 	path('candidatelogin/',views.candidatelogin,name="candidatelogin"),

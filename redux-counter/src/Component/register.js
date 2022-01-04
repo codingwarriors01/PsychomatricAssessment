@@ -103,11 +103,11 @@ const handleImageChange = (e) => {
 	useEffect(() => {
 		// console.log(formerrors);
 		if (Object.keys(formerrors).length===0 && isSubmit){
-			console.log(formData);
+			
 	
 		}
 	},[formerrors])
-  console.log("console",image)
+  
 	const Validate=(values)=>
 	{
 		const errors={};

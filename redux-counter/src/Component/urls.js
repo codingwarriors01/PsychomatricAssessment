@@ -40,6 +40,7 @@ import Kmeanspythonexample from './KMeansPrograms';
 import Randomforestapplication from './RandomForestApplication';
 import Forget_Password from './forget-password';
 import ResetPassword from './setpass';
+import UserResult from './user_result'
 
 function Path() {
     return (
@@ -85,8 +86,8 @@ function Path() {
                 <Route exact path="/Kmeanspythonexample" element={<Kmeanspythonexample />} />
                 <Route exact path="/Randomforestapplication" element={<Randomforestapplication />} />
                 <Route exact path="/forget_password" element={<Forget_Password/>}/>
-
                 <Route path="password-reset/:uidb64/:token/" element={<ResetPassword/>} />
+                <Route exact path="view_result" element={<UserResult />} />
             
             </Routes>
         </Router>);
