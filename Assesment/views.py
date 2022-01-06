@@ -5,6 +5,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import  smart_bytes,smart_str,DjangoUnicodeDecodeError
+from rest_framework import response
 from .utils import Util
 from django.urls import reverse
 
@@ -13,7 +14,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
 
 from rest_framework import serializers, viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
 from django.http.response import HttpResponse
 from django.shortcuts import render
@@ -21,7 +22,7 @@ from rest_framework import generics, status
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import (DestroyModelMixin, ListModelMixin,
                                    RetrieveModelMixin)
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
@@ -55,9 +56,12 @@ def candidateregister(request):
 
 
 class candidateList(APIView):
+   
     def get(self, request):
         tasks = Candidate.objects.all()
         serialized = CustomUserSerializer(tasks, many=True)
+     
+       
         return Response(serialized.data)
 
 
@@ -397,36 +401,36 @@ def userfeedback(request):
 
 
 
-def checkanswer(request):
-    cresult=0
-    wresult=0
-    post1=User_Aptitude_mapper.objects.all()
-    for i in post1:
-        qid=i.q_id
-        user_answer=i.user_answer
-        post2=Aptitude.objects.filter(q_id=qid)
-        for j in post2:
-            q_ans=j.q_ans
-        if user_answer == q_ans:
-            cresult=cresult+1           
-        else:
-            user_wresult=wresult+1
-    b = Result(user_cresult=cresult,user_wresult=user_wresult)
-    b.save()
-    return render(request,'assesment_system/index.html')
+# def checkanswer(request):
+#     cresult=0
+#     wresult=0
+#     post1=User_Aptitude_mapper.objects.all()
+#     for i in post1:
+#         qid=i.q_id
+#         user_answer=i.user_answer
+#         post2=Aptitude.objects.filter(q_id=qid)
+#         for j in post2:
+#             q_ans=j.q_ans
+#         if user_answer == q_ans:
+#             cresult=cresult+1           
+#         else:
+#             user_wresult=wresult+1
+#     b = Result(user_cresult=cresult,user_wresult=user_wresult)
+#     b.save()
+#     return render(request,'assesment_system/index.html')
    
 
 
-class ResultList(APIView): 
-    def get(self, request):
-        tasks = Result.objects.all()
-        serialized = Result_Serializer(tasks, many=True)
-        return Response(serialized.data)
+# class ResultList(APIView): 
+#     def get(self, request):
+#         tasks = Result.objects.all()
+#         serialized = Result_Serializer(tasks, many=True)
+#         return Response(serialized.data)
 
-def Resultlist(request):
-    productData =Result.objects.all()
-    print("products are ",productData)
-    return render(request,'assesment_system/result.html',{"products": productData})
+# def Resultlist(request):
+#     productData =Result.objects.all()
+#     print("products are ",productData)
+#     return render(request,'assesment_system/result.html',{"products": productData})
 
 
 
@@ -496,41 +500,28 @@ class UserFeedackList(APIView):
         serailzed= user_feedback_Serializer(tasks,many=True)
         return Response(serailzed.data)  
 
-# class RegisterListView(APIView):
-#     def get(self, request):
-#         tasks = Register.objects.all()
-#         serialized = RegisterSerializer(tasks, many=True)
-#         return Response(serialized.data)    
-
-# class RegisterCreateApi(generics.CreateAPIView):
-#     queryset = Candidate.objects.all()
-#     serializer_class = CandidateSerializer
-
-# class RegisterUpdateApi(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Register.objects.all()
-#     serializer_class = RegisterSerializer   
 
 def index(request):
     return render(request, 'assesment_system/index.html')     
 
-def ResultView(request):
-    user_cresult = 0
-    user_wresult=0
-    res = User_Reasoning_mapper.objects.all()
-    for i in res:
-        question_id = i.question_id
-        user_answer = i.user_answer
-        res2 = Reasoning.objects.filter(question_id=question_id)
-        for j in res2:
-            answer = j.answer
-        if user_answer == answer:
-            user_cresult = user_cresult+1
-        else:
-            user_wresult = user_wresult+1
-    print("Your " +str(user_cresult)+ " answer is correct and " +str(user_wresult)+ " answer is incorrect.")
-    result = Result(user_cresult = user_cresult, user_wresult = user_wresult)
-    result.save()
-    return render(request, 'assesment_system/result.html')    
+# def ResultView(request):
+    # user_cresult = 0
+    # user_wresult=0
+    # res = User_Reasoning_mapper.objects.all()
+    # for i in res:
+    #     question_id = i.question_id
+    #     user_answer = i.user_answer
+    #     res2 = Reasoning.objects.filter(question_id=question_id)
+    #     for j in res2:
+    #         answer = j.answer
+    #     if user_answer == answer:
+    #         user_cresult = user_cresult+1
+    #     else:
+    #         user_wresult = user_wresult+1
+    # print("Your " +str(user_cresult)+ " answer is correct and " +str(user_wresult)+ " answer is incorrect.")
+    # result = Result(user_cresult = user_cresult, user_wresult = user_wresult)
+    # result.save()
+    # return render(request, 'assesment_system/result.html')    
 
 
 class BlacklistTokenUpdateView(APIView):
@@ -586,3 +577,70 @@ class PasswordTokenCheckAPI(generics.GenericAPIView):
         except DjangoUnicodeDecodeError as identifier:
                 if not PasswordResetTokenGenerator().check_token(user):
                      return Response({'error': 'Token is not valid, please request a new one'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+#Api for Candidateresult
+# class CandidateResult(APIView):
+#      serializer_class =UserResult_Serializer
+#      def post(self,request):
+#         print("Requested data ",request.data) 
+#         serializer = UserResult_Serializer(data=request.data)
+#         print("Serializer is ",serializer)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      
+
+class  CandidateResultList(APIView):
+    def get(self, request):
+        tasks = UserResult.objects.all()
+        serialized = UserResult_Serializer(tasks, many=True)
+        return Response(serialized.data)
+
+def Candiresult(request):
+    user_cresult = 0
+    user_wresult=0
+    #For Aptitude 
+    res = User_Aptitude_mapper.objects.all()
+    for i in res:
+        username=i.username
+        q_id = i.q_id
+        user_answer = i.user_answer
+        testtype=i.testtype
+        res2 = Aptitude.objects.filter(q_id=q_id)
+        for j in res2:
+            q_ans = j.q_ans
+        if q_ans == user_answer:
+            user_cresult = user_cresult+1
+        else:
+            user_wresult = user_wresult+1
+    result = UserResult(username=username,user_cresult = user_cresult, user_wresult = user_wresult,testtype=testtype)
+    result.save()
+    # #For reasoning
+    user_coresult = 0
+    user_wroesult=0
+    res3 = User_Reasoning_mapper.objects.all()
+    for i in res3:
+        username=i.username
+        question_id = i.question_id
+        user_answer = i.user_answer
+        testtype=i.testtype
+        res4 = Reasoning.objects.filter(question_id=question_id)
+        for j in res4:
+            answer = j.answer
+        if answer == user_answer:
+            user_coresult = user_coresult+1
+        else:
+            user_wroesult = user_wroesult+1
+    result = UserResult(username=username,user_cresult = user_coresult, user_wresult = user_wroesult,testtype=testtype)
+    result.save()
+
+
+
+
+
+
+
+    return render(request, 'assesment_system/result.html')
