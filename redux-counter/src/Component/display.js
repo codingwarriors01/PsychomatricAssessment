@@ -27,6 +27,11 @@ export default function AdminDisplay(){
       history('/update/'+id)
       // console.log(id)
     }
+    function UserResult(id){
+      history('/view_result/'+id)
+      
+    }
+    
     function Delete(id){
       axios.delete('http://127.0.0.1:8000/delete/'+id)
       .then((res) => {
@@ -78,7 +83,7 @@ export default function AdminDisplay(){
                 <td><button onClick={()=>Update(posts.id)} className="btn" ><i class="fas fa-edit"></i></button>
                 
                 <button  onClick={()=>Delete(posts.id)} className="btn" ><i class="fas fa-trash-alt"></i></button></td>
-                <td><Link to="/view_result">View Result</Link></td>
+                <td><button className='btn btn-link' onClick={()=>UserResult(posts.id)} >View Result</button></td>
                </tr>)  
 }
              </tbody>

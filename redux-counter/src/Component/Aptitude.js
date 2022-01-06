@@ -6,9 +6,12 @@ import { useNavigate,Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from 'react-router';
 // import aptitudequestions from '../Service/Reducers/aptireducer'
 
 export default function Questionpaper(props) {
+  
+  const [uname,setUname]=useState('');
   const dispatch=useDispatch()
   const [q_id, setq_id] = useState(1);
   const [answer, setAnswer] = useState(null);
@@ -20,13 +23,14 @@ export default function Questionpaper(props) {
 
   useEffect(() => {
 
-
+    setUname(localStorage.getItem('username'));
+    
     axios.get('http://127.0.0.1:8000/Aptitudeshow/' + props.id)
       .then(res => {
 
         setq_id(props.id);
 
-        console.log("respppppp", res.data);
+       
         let options = [];
         options.push(res.data.q_option1);
         options.push(res.data.q_option2);
@@ -38,9 +42,9 @@ export default function Questionpaper(props) {
 
   }, [props.id]);
 
-
+ 
   const StoreResult = async () => {
-    const data = { q_id: q_id, user_answer: answer }
+    const data = {username:uname, q_id: q_id, user_answer: answer }
     
 
     await axios.post("http://127.0.0.1:8000/User_Aptitude_mapperAPI", JSON.stringify(data), {
@@ -95,8 +99,8 @@ export default function Questionpaper(props) {
           <div class="card-body">
 
             <button className="btn btn-dark" onClick={() => {dispatch({type:'PREVIOUS',payload:props.updateProps(Number(props.id) - 1 === 0 ? 1 : Number(props.id) - 1)})}}> &larr; Previous</button>
-            <Link to='/exam_dashboard' className="btn btn-primary" style={{ visibility: q_id === 10 ? 'visible' : "hidden", marginLeft: "40px" }} onClick={() =>{saveAndNext();notify() }}>Submit</Link>
-            <button className="btn btn-dark" style={{ visibility: q_id === 10 ? 'hidden':'visible', marginLeft: "40px" }} onClick={() => {dispatch({type:'NEXT',payload: props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)});saveAndNext();notify()}}>Save & Next &rarr; </button>
+            <Link to='/exam_dashboard' className="btn btn-primary" style={{ visibility: q_id === 5 ? 'visible' : "hidden", marginLeft: "40px" }} onClick={() =>{saveAndNext();notify() }}>Submit</Link>
+            <button className="btn btn-dark" style={{ visibility: q_id === 5 ? 'hidden':'visible', marginLeft: "40px" }} onClick={() => {dispatch({type:'NEXT',payload: props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)});saveAndNext();notify()}}>Save & Next &rarr; </button>
 
           </div>
         </div>

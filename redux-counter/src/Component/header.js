@@ -19,6 +19,7 @@ export default function NavBar(props)
     },[]);   
     
     const cid=localStorage.getItem('username')
+    console.log("data12",uid)
     const imd=localStorage.getItem('image')
 
     let imgs = [

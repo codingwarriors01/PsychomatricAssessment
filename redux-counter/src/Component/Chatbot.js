@@ -41,7 +41,7 @@ const Chatbot = (props) => {
     <ThemeProvider theme={theme}>
       <div style={{ display: showChat ? 'none' : '' }}>
         <ChatBot
-          speechSynthesis={{ enable: true, lang: 'en-US' }}
+          // speechSynthesis={{ enable: true, lang: 'en-US' }}
           recognitionEnable={true}
           steps={[
             {
@@ -183,6 +183,7 @@ const Chatbot = (props) => {
               user: true,
               validator: (value) =>{
                 if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+                  
                   return true
                 } else {
                   return 'Oops, please enter the ID associated with your company 😀'
@@ -212,7 +213,7 @@ const Chatbot = (props) => {
           </button>
         ) : (
           <button className="btn chat" onClick={() => hideChat()}>
-            <i class="fas fa-comments fa-2x"></i>
+            <i class="fas fa-comment fa-2x"></i>
           </button>
         )}
       </div>
