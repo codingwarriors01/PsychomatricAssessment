@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AdminSignIn() {
+	let uid=0;
+	let username=0;
+	let image=0;
 	const history = useNavigate();
 	const initialFormData = Object.freeze({
 		email: '',
@@ -44,6 +47,8 @@ export default function AdminSignIn() {
 	const [formData, updateFormData] = useState(initialFormData);
 	const [formerrors,setFormErrors]=useState(initialFormData);
     const [isSubmit,setIssubmit]=useState(false);
+	const [post, setPost] =useState([]);
+	const[userid,setUserid]=useState('');
 
 	const handleChange = (e) => {
 		updateFormData({
@@ -70,17 +75,45 @@ export default function AdminSignIn() {
 				axios.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
 				history('/display');
-				//console.log(res);
-				//console.log(res.data);
+
 			});
 	};
 	useEffect(() => {
+
+
+
+		axios.get('http://127.0.0.1:8000/candidateList/')
+        .then(res=>{
+
+            setPost(res.data)
+           
+			for (let i=0; i<res.data.length; i++){
+				if (formData.email===res.data[i].email){
+					console.log("userid before set", userid)
+					uid = res.data[i].id;
+					username=res.data[i].user_name;
+					image=res.data[i].image;
+					localStorage.setItem('image', image);
+
+					localStorage.setItem('uid', uid);
+					localStorage.setItem('username', username);
+					console.log("userid22", username)
+					setUserid(previd=>previd+uid)
+
+
+
+
+				}
+			}
+	})
+
+
 		console.log(formerrors);
-		if (Object.keys(formerrors).length===0 && isSubmit){
+		if (Object.keys(formerrors).length === 0 && isSubmit) {
 			console.log(formData);
-	
+
 		}
-	},[formerrors])
+	}, [formerrors])
 	const Validate=(values)=>
 	{
 		const errors={};
@@ -120,12 +153,6 @@ export default function AdminSignIn() {
 				window.location.reload();
 			});
 	};
-	// const responseGoogle = async (response) => {
-	// 	googleLogin(response.accessToken);
-	// 	console.log("ppp",response)
-	// 	console.log("nnk",response.accessToken)
-	// };
-
 
 	const classes = useStyles();
 
