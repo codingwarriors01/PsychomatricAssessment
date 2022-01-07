@@ -22,7 +22,7 @@ export default function Home() {
 			<div class="heading-title" style={{paddingBottom: "0px"}}>
 				<h2>Services</h2>
 				<span style={{color:"#0f90dcde"}}>---- <i class="fa fa-suitcase"></i> ---- </span>
-				<p>Assess talent holistically and automate your hiring using our digital tools</p>
+				<p>Assess talent holistically and automate your hiring using our digital tools.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">

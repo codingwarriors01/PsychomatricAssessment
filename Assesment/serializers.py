@@ -133,7 +133,13 @@ class Self_development_User_mapperSerializer(serializers.ModelSerializer):
 
 
 
+class Customer_supportSerializer(serializers.ModelSerializer):
 
+     class Meta:
+
+         model=Customer_support
+
+         fields='__all__'
 
 
 
