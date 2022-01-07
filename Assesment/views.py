@@ -637,10 +637,13 @@ def Candiresult(request):
     result = UserResult(username=username,user_cresult = user_coresult, user_wresult = user_wroesult,testtype=testtype)
     result.save()
 
-
-
-
-
-
-
     return render(request, 'assesment_system/result.html')
+
+
+class Customer_supportAPI(generics.CreateAPIView):
+        queryset = Customer_support.objects.all()
+        serializer_class = Customer_supportSerializer
+
+class Customer_supportListApi(generics.ListAPIView):
+     queryset=Customer_support.objects.all()
+     serializer_class=Customer_supportSerializer

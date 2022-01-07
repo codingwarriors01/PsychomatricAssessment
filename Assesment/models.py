@@ -104,6 +104,7 @@ class User_Verbal_mapper(models.Model):
     username = models.CharField(max_length=100)
     q_id = models.CharField(max_length=100)
     user_answer = models.CharField(max_length=100)
+    testtype=models.CharField(max_length=100,default="Verbal")
 
     def __str__(self):
         return self.user_answer
@@ -132,6 +133,7 @@ class Self_development_User_mapper(models.Model):
     username = models.CharField(max_length=100)
     Sq_id = models.CharField(max_length=100)
     Suser_answer = models.CharField(max_length=100)
+    testtype=models.CharField(max_length=100,default="Self_development")
 
     def __str__(self):
         return self.Suser_answer
@@ -191,3 +193,10 @@ class UserResult(models.Model):
     testtype=models.CharField(max_length=200)
     
     
+class Customer_support(models.Model):
+
+    email_fetch=models.EmailField(max_length=50)
+
+    def __str__(self):
+
+        return self.email_fetch

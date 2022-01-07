@@ -57,7 +57,10 @@ urlpatterns += [
 	
 	path('userfeedback/',views.userfeedback,name="userfeedback"),
 
-    # path('result',views.ResultView,name= 'result'),
+   # Customer Support
+
+    path('generate_support',Customer_supportAPI.as_view(), name='generate_support'),
+    path('Customer_support',Customer_supportListApi.as_view(), name='Customer_support'),
 
 
 

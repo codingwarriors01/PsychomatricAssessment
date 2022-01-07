@@ -99,8 +99,8 @@ export default function Questionpaper(props) {
           <div class="card-body">
 
             <button className="btn btn-dark" onClick={() => {dispatch({type:'PREVIOUS',payload:props.updateProps(Number(props.id) - 1 === 0 ? 1 : Number(props.id) - 1)})}}> &larr; Previous</button>
-            <Link to='/exam_dashboard' className="btn btn-primary" style={{ visibility: q_id === 5 ? 'visible' : "hidden", marginLeft: "40px" }} onClick={() =>{saveAndNext();notify() }}>Submit</Link>
-            <button className="btn btn-dark" style={{ visibility: q_id === 5 ? 'hidden':'visible', marginLeft: "40px" }} onClick={() => {dispatch({type:'NEXT',payload: props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)});saveAndNext();notify()}}>Save & Next &rarr; </button>
+            <Link to='/exam_dashboard' className="btn btn-primary" style={{ visibility: q_id === 4 ? 'visible' : "hidden", marginLeft: "40px" }} onClick={() =>{saveAndNext();notify() }}>Submit</Link>
+            <button className="btn btn-dark" style={{ visibility: q_id === 4 ? 'hidden':'visible', marginLeft: "40px" }} onClick={() => {dispatch({type:'NEXT',payload: props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)});saveAndNext();notify()}}>Save & Next &rarr; </button>
 
           </div>
         </div>
