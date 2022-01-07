@@ -30,16 +30,16 @@ const config = {
 
 const Chatbot = (props) => {
   let [showChat, setShowChat] = useState(true)
-  
+
   const Aman = (email_fetch) => {
-    const customer = {"email_fetch":email_fetch}
-    axios.post('http://127.0.0.1:8000/generate_support',customer,
-    {
-      headers: {
-        'Content-type': 'application/json'
-      },
-    })
-  console.log("HEy  ",customer)
+    const customer = { "email_fetch": email_fetch }
+    axios.post('http://127.0.0.1:8000/generate_support', customer,
+      {
+        headers: {
+          'Content-type': 'application/json'
+        },
+      })
+    console.log("HEy  ", customer)
 
   }
   const startChat = () => {
@@ -119,7 +119,7 @@ const Chatbot = (props) => {
             {
               id: 'test_taker',
               options: [
-                { value: 7, label: 'Where can I find my test score?', trigger: 'customer_support' },       
+                { value: 7, label: 'Where can I find my test score?', trigger: 'customer_support' },
                 { value: 8, label: 'I cannot start my test ', trigger: 'customer_support' },
                 { value: 9, label: 'Finished my test what should I do next', trigger: 'test-finish' },
                 { value: 10, label: 'My test got interrupted', trigger: 'customer_support' },
@@ -212,18 +212,18 @@ const Chatbot = (props) => {
               validator: (value) => {
                 if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
                   Aman(value)
-                  value="email_fetch"
-                 
+                  value = "email_fetch"
+
                   return true
-                  
+
                 } else {
                   return 'Oops, please enter the ID associated with your company 😀'
                 }
-                
+
               },
-              
+
               trigger: 'customer_notify',
-              
+
 
             },
             {
