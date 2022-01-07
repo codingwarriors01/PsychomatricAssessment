@@ -1,0 +1,9 @@
+build/
+node_modules/
+dist/
+.settings/
+.project
+.classpath
+bin/
+.idea/
+db.sqlite3
