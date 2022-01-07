@@ -37,7 +37,7 @@ urlpatterns += [
 	path('crud/<int:pk>/', crud.as_view(), name='crud'), 
 	path('User_Apptitude_mapper_crud/<int:pk>/', User_Apptitude_mapper_crud.as_view(), name='User_Apptitude_mapper_crud'),
 	path('User_Aptitude_mapperAPI', User_Aptitude_mapperAPI.as_view(), name='User_Aptitude_mapperAPI'),
-	path('User_Aptitude_mapperList', User_Aptitude_mapperList.as_view(), name='User_Aptitude_mapperList'),
+	path('User_Aptitude_mapperList/', User_Aptitude_mapperList.as_view(), name='User_Aptitude_mapperList'),
 	path('checkanswer',views.checkanswer,name='checkanswer'),
 
 #by Aman

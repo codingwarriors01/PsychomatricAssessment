@@ -22,7 +22,7 @@ export default function Home() {
 			<div class="heading-title" style={{paddingBottom: "0px"}}>
 				<h2>Services</h2>
 				<span style={{color:"#0f90dcde"}}>---- <i class="fa fa-suitcase"></i> ---- </span>
-				<p>Magnam dalores commodi suscipit conseqatur ex aliquid</p>
+				<p>Assess talent holistically and automate your hiring using our digital tools.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
@@ -33,7 +33,7 @@ export default function Home() {
 				      				<span class="feature-icon"><i class="fa fa-suitcase"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title">Special Title Treatment</h5>
+							  		<h5 class="card-title">Training</h5>
 				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
 							  	</div>
 							</div>
@@ -48,7 +48,7 @@ export default function Home() {
 				      				<span class="feature-icon"><i class="fa fa-newspaper-o"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title">Lorem Lpsum</h5>
+							  		<h5 class="card-title">News Feed</h5>
 				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
 							  	</div>
 							</div>

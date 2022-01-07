@@ -87,7 +87,7 @@ function Path() {
                 <Route exact path="/Randomforestapplication" element={<Randomforestapplication />} />
                 <Route exact path="/forget_password" element={<Forget_Password/>}/>
                 <Route path="password-reset/:uidb64/:token/" element={<ResetPassword/>} />
-                <Route exact path="view_result" element={<UserResult />} />
+                <Route exact path="view_result/:id" element={<UserResult />} />
             
             </Routes>
         </Router>);
