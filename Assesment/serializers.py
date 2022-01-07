@@ -70,7 +70,7 @@ class AptitudeSerializer(serializers.ModelSerializer):
 class User_Aptitude_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User_Aptitude_mapper
-        fields = ('id','q_id','user_answer')
+        fields = ('id','username','q_id','user_answer','testtype')
      
     def create(self, validated_data):
         apptitude = User_Aptitude_mapper.objects.create(**validated_data)
@@ -133,7 +133,13 @@ class Self_development_User_mapperSerializer(serializers.ModelSerializer):
 
 
 
+class Customer_supportSerializer(serializers.ModelSerializer):
 
+     class Meta:
+
+         model=Customer_support
+
+         fields='__all__'
 
 
 
@@ -149,7 +155,7 @@ class ReasoningSerializer(serializers.ModelSerializer):
 class User_Reasoning_mapper_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User_Reasoning_mapper
-        fields=('id', 'question_id', 'user_answer')
+        fields=('id','username','question_id', 'user_answer')
     def create(self, validated_data):
         reasoning=User_Reasoning_mapper.objects.create(**validated_data)
         return reasoning
@@ -177,10 +183,18 @@ class User_Feedback_Serializer(serializers.ModelSerializer):
      
 
 
-class Result_Serializer(serializers.ModelSerializer):
+class UserResult_Serializer(serializers.ModelSerializer):
     class Meta:
-        model=Result
-        fields='__all__'
+        model = UserResult
+        fields = "__all__"
+
+
+
+
+# class Result_Serializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=Result
+#         fields='__all__'
 
 
 #forgotpassword

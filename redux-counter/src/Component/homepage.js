@@ -34,7 +34,7 @@ export default function Home() {
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
 							  		<h5 class="card-title">Training</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+				        			<p class="card-text">Groom leaders from employees today, to ensure the creation of a solid leadership pipeline for the future.</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -49,7 +49,7 @@ export default function Home() {
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
 							  		<h5 class="card-title">News Feed</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+				        			<p class="card-text">Our goal with News Feed is to show you the stories that matter most to you. It is a long established fact that a reader.</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -63,8 +63,8 @@ export default function Home() {
 				      				<span class="feature-icon"><i class="fa fa-signal"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title"i>Title Treatment</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  		<h5 class="card-title"i>People Connect</h5>
+				        			<p class="card-text">Connecting People is an evidence-informed approach to supporting people to connect with others. Positive social connections are important for our physical and mental wellbeing.</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -78,8 +78,8 @@ export default function Home() {
 				      				<span class="feature-icon"><i class="fa fa-binoculars"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title">Sitemap</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  		<h5 class="card-title">Demo</h5>
+				        			<p class="card-text">Discover the success stories of our clients around the globe that follow the best practices .</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -90,11 +90,11 @@ export default function Home() {
 				      	<div class="card-body">
 				      		<div class="d-flex bd-highlight">
 				      			<div class="p-2 flex-shrink-1 bd-highlight">
-				      				<span class="feature-icon"><i class="fa fa-cog"></i></span>
+				      				<span class="feature-icon"><i class="fas fa-user-cog"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title">Settings</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  		<h5 class="card-title">Configurations</h5>
+				        			<p class="card-text">Configuration file information specifies, where log files from an application are stored via the storage path, which plug-ins are allowed in a given program.</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -105,11 +105,11 @@ export default function Home() {
 				      	<div class="card-body">
 				      		<div class="d-flex bd-highlight">
 				      			<div class="p-2 flex-shrink-1 bd-highlight">
-				      				<span class="feature-icon"><i class="fa fa-envelope-o"></i></span>
+				      				<span class="feature-icon"><i class="fas fa-headset"></i></span>
 				      			</div>
 							  	<div class="p-2 w-100 bd-highlight">
-							  		<h5 class="card-title">Gmail</h5>
-				        			<p class="card-text">With supporting text below as a natural lead-in to additional content. It is a long established fact that a reader.</p>
+							  		<h5 class="card-title">Support Desk</h5>
+				        			<p class="card-text">Get the Best Admin, Examiner and Candidate Experience with Our 24*7 Support, Easy Workflows and Automated Credibility Reports.</p>
 							  	</div>
 							</div>
 				      	</div>
@@ -119,7 +119,7 @@ export default function Home() {
 		</div>
 	</section>
 
-	<div style={{marginLeft: "72%", marginTop: "-76.5%", position:"fixed"}}>
+	<div style={{marginLeft: "75%", marginTop: "-64.5%", position:"fixed"}}>
 	<Chatbot/>
 	</div>
 

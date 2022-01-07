@@ -38,7 +38,7 @@ urlpatterns += [
 	path('User_Apptitude_mapper_crud/<int:pk>/', User_Apptitude_mapper_crud.as_view(), name='User_Apptitude_mapper_crud'),
 	path('User_Aptitude_mapperAPI', User_Aptitude_mapperAPI.as_view(), name='User_Aptitude_mapperAPI'),
 	path('User_Aptitude_mapperList/', User_Aptitude_mapperList.as_view(), name='User_Aptitude_mapperList'),
-	path('checkanswer',views.checkanswer,name='checkanswer'),
+	# path('checkanswer',views.checkanswer,name='checkanswer'),
 
 #by Aman
 	 path('Verbal',VerbalAPI.as_view(),name='Verbal'),
@@ -57,7 +57,10 @@ urlpatterns += [
 	
 	path('userfeedback/',views.userfeedback,name="userfeedback"),
 
-    path('result',views.ResultView,name= 'result'),
+   # Customer Support
+
+    path('generate_support',Customer_supportAPI.as_view(), name='generate_support'),
+    path('Customer_support',Customer_supportListApi.as_view(), name='Customer_support'),
 
 
 
@@ -80,7 +83,7 @@ urlpatterns += [
     # path('api/UserFeedback', UserFeedback.as_view(), name='UserFeedback'),
 	# path('api/UserFeedbackList', UserFeedackList.as_view(), name='UserFeedbackList'),
 	# path('userfeedback/',views.userfeedback,name="userfeedback"),
-    path('result',views.ResultView,name= 'result'),
+    # path('result',views.ResultView,name= 'result'),
     path('Self_add', Self_developmentCreateApi.as_view(), name='Self_add'),
     # path('USer_Self_development_mapper_Result', User_selfdevelop_mapperAPI.as_view(), name='USer_Self_development_mapper_Result'),
 
@@ -95,7 +98,7 @@ urlpatterns += [
 
     # path('reasoning', ReasoningAPI.as_view(), name='reasoning'),
 	path('questionsList', views.QuestionPage,name='questionsList'),
-	path('result', views.Resultlist, name='result'),
+	# path('result', views.Resultlist, name='result'),
  	path('view', ReasoningViewApi.as_view(), name='view'),
 	path('login/',UserLoginView.as_view()),	
 	path('exam_dashboard/',views.ExamDashboard,name='exam_dashboard'),
@@ -103,7 +106,7 @@ urlpatterns += [
     path('profilelist', views.ProfileList.as_view(), name='reasoning'),
     path('questions', views.QuestionPage),
     path('reasoning', ReasoningCreateApi.as_view(), name='create'),
-    path('show/<int:pk>',ReasoningShow.as_view(), name='show'),
+    # path('show/<int:pk>',ReasoningShow.as_view(), name='show'),
     path('updatereasoning/<int:pk>',ReasoningUpdateApi.as_view(), name='update'),
 	path('login/',UserLoginView.as_view()),	         # by pratiksha 
     # path('profilelist', views.ProfileList.as_view(), name='reasoning'),
@@ -115,8 +118,8 @@ urlpatterns += [
     # path('UserFeedback', UserFeedback.as_view(), name='UserFeedback'),
 	# path('UserFeedbackList', UserFeedackList.as_view(), name='UserFeedbackList'),
 	# path('userfeedback/',views.userfeedback,name="userfeedback"),
-    path('result1', views.ResultView, name='result1'),
-    path('resultview', ResultList.as_view(), name='resultview'),
+    # path('result1', views.ResultView, name='result1'),
+    # path('resultview', ResultList.as_view(), name='resultview'),
     # path('registerview', RegisterListView.as_view(), name='registerview'),
     # path('createuser', RegisterCreateApi.as_view(), name='createuser'),
     # path('updateuser/<int:pk>',RegisterUpdateApi.as_view(), name='updateuser'),
@@ -133,6 +136,12 @@ urlpatterns += [
          PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
     path('password-reset-complete', SetNewPasswordAPIView.as_view(),
          name='password-reset-complete'),
+
+
+    # path('CandidateResult/', CandidateResult.as_view(), name='CandidateResult'),
+    path('CandidateResultList/', CandidateResultList.as_view(), name='CandidateResultList'),
+    path('Candiresult',views.Candiresult,name='Candiresult')
+
 
 
 ]

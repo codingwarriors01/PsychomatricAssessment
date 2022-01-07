@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ChatBot from 'react-simple-chatbot'
 import { ThemeProvider } from 'styled-components'
+import axios from 'axios';
 import Post from './Post'
 import Link from './Link'
 import '../App.css'
@@ -11,7 +12,8 @@ const theme = {
   fontFamily: 'Helvetica Neue',
   headerBgColor: '#3736a4',
   headerFontColor: '#fff',
-  headerFontSize: '15px',
+  headerFontSize: '25px',
+  headerFontWeight: 'bold',
   botBubbleColor: '#3736a4',
   botFontColor: '#fff',
   userBubbleColor: '#fff',
@@ -24,12 +26,22 @@ const config = {
   hideUserAvatar: true,
   placeholder: 'Reply to Tia',
   headerTitle: 'Tia',
-  // headerTitle:<Image source={require('data:image/svg+xml,%3csvg ve…l='%231e2e3b'/%3e%3c/svg%3e')}/> ,
 }
 
 const Chatbot = (props) => {
   let [showChat, setShowChat] = useState(true)
 
+  const Aman = (email_fetch) => {
+    const customer = { "email_fetch": email_fetch }
+    axios.post('http://127.0.0.1:8000/generate_support', customer,
+      {
+        headers: {
+          'Content-type': 'application/json'
+        },
+      })
+    console.log("HEy  ", customer)
+
+  }
   const startChat = () => {
     setShowChat(true)
   }
@@ -41,7 +53,6 @@ const Chatbot = (props) => {
     <ThemeProvider theme={theme}>
       <div style={{ display: showChat ? 'none' : '' }}>
         <ChatBot
-          speechSynthesis={{ enable: true, lang: 'en-US' }}
           recognitionEnable={true}
           steps={[
             {
@@ -101,7 +112,6 @@ const Chatbot = (props) => {
             },
             {
               id: '6',
-              // message: 'Great to hear that 😊! What can I help you with?',
               component: <Link />,
               trigger: 'q-submit',
             },
@@ -110,10 +120,10 @@ const Chatbot = (props) => {
               id: 'test_taker',
               options: [
                 { value: 7, label: 'Where can I find my test score?', trigger: 'customer_support' },
-                { value: 8, label: 'I cannot start my test ', trigger: '' },
-                { value: 9, label: 'Finished my test what should I do next', trigger: '' },
-                { value: 10, label: 'My test got interrupted', trigger: '' },
-                { value: 11, label: 'I cannot find my test link', trigger: '' },
+                { value: 8, label: 'I cannot start my test ', trigger: 'customer_support' },
+                { value: 9, label: 'Finished my test what should I do next', trigger: 'test-finish' },
+                { value: 10, label: 'My test got interrupted', trigger: 'customer_support' },
+                { value: 11, label: 'I cannot find my test link', trigger: 'customer_support' },
               ],
             },
             {
@@ -135,11 +145,29 @@ const Chatbot = (props) => {
             {
               id: 'oppurtunity',
               options: [
-                { value: 14, label: 'Assessor ', trigger: '' },
-                { value: 15, label: 'Developer', trigger: '' },
-                { value: 16, label: 'Career at Real CoderZ', trigger: '' },
+                { value: 14, label: 'Assessor ', trigger: 'customer_support' },
+                { value: 15, label: 'Developer', trigger: 'customer_support' },
+                { value: 16, label: 'Career at Real CoderZ', trigger: 'customer_support' },
               ],
 
+            },
+            {
+              id: 'test-finish',
+              message: 'No issues now you can close all tabs!',
+              trigger: 'ask-query',
+            },
+            {
+              id: 'ask-query',
+              message: 'Do you have any other queries',
+              trigger: 'more-queries',
+            },
+
+            {
+              id: 'more-queries',
+              options: [
+                { value: 'y', label: 'Yes', trigger: 'qtype' },
+                { value: 'n', label: 'No', trigger: 'end-message' },
+              ],
             },
 
             {
@@ -181,14 +209,22 @@ const Chatbot = (props) => {
             {
               id: 'email_fetching',
               user: true,
-              validator: (value) =>{
+              validator: (value) => {
                 if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
+                  Aman(value)
+                  value = "email_fetch"
+
                   return true
+
                 } else {
                   return 'Oops, please enter the ID associated with your company 😀'
                 }
+
               },
+
               trigger: 'customer_notify',
+
+
             },
             {
               id: 'customer_notify',
@@ -212,7 +248,7 @@ const Chatbot = (props) => {
           </button>
         ) : (
           <button className="btn chat" onClick={() => hideChat()}>
-            <i class="fas fa-comments fa-2x"></i>
+            <i class="fas fa-comment fa-2x"></i>
           </button>
         )}
       </div>

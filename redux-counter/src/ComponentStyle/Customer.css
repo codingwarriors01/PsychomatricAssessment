@@ -1,0 +1,17 @@
+.tableCs {
+    counter-reset: rowNumber;
+    width: 60% !important;
+    }
+    
+    
+    
+    table .row2 {
+    counter-increment: rowNumber;
+    }
+    
+    
+    
+    table .row2 td:first-child::before {
+    content: counter(rowNumber);
+    
+    }

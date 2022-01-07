@@ -100,10 +100,9 @@ export default function SignIn() {
 					username=res.data[i].user_name;
 					image=res.data[i].image;
 					localStorage.setItem('image', image);
-
 					localStorage.setItem('uid', uid);
 					localStorage.setItem('username', username);
-					console.log("userid22", username)
+					console.log("userid22", localStorage.setItem('username', username))
 					setUserid(previd=>previd+uid)
 
 			dispatch({type:'SUBMIT', payload:{username}})

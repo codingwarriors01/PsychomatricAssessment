@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react';
 import '../ComponentStyle/question.css';
 import Card from "react-bootstrap/Card";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate,Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function Questions(props) {
-
+  const dispatch=useDispatch()
+  const [uname,setUname]=useState('');
   const [id, setid] = useState(1);
   const [answer, setAnswer] = useState(null);
   const [displayQuestion, setDisplayQuestion] = useState({});
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/show/' + props.id)
+    setUname(localStorage.getItem('username'));
+    console.log("Name",uname)
+    axios.get('http://127.0.0.1:8000/ReasoningShow/' + props.id)
       .then(res => {
 
         setid(props.id);
@@ -29,8 +35,8 @@ export default function Questions(props) {
 
   const StoreResult = async () => {
 
-    const data = { question_id: id, user_answer: answer };
-    console.log("data", data);
+    const data = {username:uname, question_id: id, user_answer: answer };
+    console.log("data", data.username);
     await axios.post(`http://localhost:8000/User_Reasoning_mapperAPI`, JSON.stringify(data), {
       headers: {
         'Content-type': 'application/json'
@@ -41,8 +47,15 @@ export default function Questions(props) {
 
     setOptions([]);
     StoreResult();
-    props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)
+    
 
+  }
+  toast.configure()
+
+  const notify = () => {
+    toast.success('Answer successfully submited', {
+      position: toast.POSITION.BOTTOM_RIGHT, autoClose: 3000
+    })
   }
 
   return (
@@ -68,8 +81,8 @@ export default function Questions(props) {
           <div class="card-body">
 
             <button className="btn btn-dark" onClick={() => { props.updateProps(Number(props.id) - 1 === 0 ? 1 : Number(props.id) - 1) }}> &larr; Previous</button>
-            <button className="btn btn-primary" style={{ visibility: id === 10 ? 'visible' : "hidden", marginLeft: "40px" }}>Submit</button>
-            <button className="btn btn-dark" style={{ marginLeft: "40px" }} onClick={() => saveAndNext()}>Save & Next &rarr; </button>
+            <Link to='/exam_dashboard' className="btn btn-primary" style={{ visibility: id === 10 ? 'visible' : "hidden", marginLeft: "40px" }} onClick={() =>{saveAndNext();notify() }}>Submit</Link>
+            <button className="btn btn-dark" style={{ visibility: id === 10 ? 'hidden':'visible', marginLeft: "40px" }} onClick={() => {dispatch({type:'NEXT',payload: props.updateProps(Number(props.id) + 1 < 11 ? Number(props.id) + 1 : 10)});saveAndNext();notify()}}>Save & Next &rarr; </button>
           </div>
         </div>
 
