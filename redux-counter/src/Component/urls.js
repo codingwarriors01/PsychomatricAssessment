@@ -41,6 +41,7 @@ import Randomforestapplication from './RandomForestApplication';
 import Forget_Password from './forget-password';
 import ResetPassword from './setpass';
 import UserResult from './user_result'
+import Manage from './manageaccount';
 
 function Path() {
     return (
@@ -88,6 +89,7 @@ function Path() {
                 <Route exact path="/forget_password" element={<Forget_Password/>}/>
                 <Route path="password-reset/:uidb64/:token/" element={<ResetPassword/>} />
                 <Route exact path="view_result/:id" element={<UserResult />} />
+                <Route path="/management/:id" element={<Manage/>} />
             
             </Routes>
         </Router>);

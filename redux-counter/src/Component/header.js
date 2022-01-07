@@ -1,5 +1,6 @@
 import React from 'react';
 import '../ComponentStyle/header.css';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 import  { useEffect,useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,9 +10,11 @@ import 'bootstrap/dist/js/bootstrap.js';
 import {useNavigate} from 'react-router-dom';
 export default function NavBar(props)
 {
+       let uidd =0;
        const [img,setimg]=useState();
        const [uid,setUid]=useState('');
        const history=useNavigate();  
+       const [post, setPost] =useState([]);
        useEffect(()=>{
         setUid(localStorage.getItem('username'));
     
@@ -27,6 +30,47 @@ export default function NavBar(props)
         'http://127.0.0.1:8000'
     
       ];
+
+      function Update(id){
+
+        history('/management/'+id)
+
+      }
+
+      useEffect(()=>{
+
+        axios.get('http://127.0.0.1:8000/candidateList/')
+
+        .then(res=>{
+
+            setPost(res.data)
+
+            for (let i=0; i<res.data.length; i++){
+
+                if ((localStorage.getItem('username')==res.data[i].user_name)){
+
+                    uidd= res.data[i].id;
+
+
+                    console.log("utut",uidd)
+
+                    localStorage.setItem('uidd', uidd);
+
+                }
+
+            }
+
+        })
+
+
+
+        setUid(localStorage.getItem('username'));
+
+        setimg(localStorage.getItem('image'));
+
+    },[]);
+
+
     
     return(
 
@@ -96,7 +140,7 @@ export default function NavBar(props)
     </a>
     <ul class="dropdown-menu" style={{marginLeft:"-70px"}} aria-labelledby="navbarDropdown">
         <li><p className="dropdown-header fw-bold">{cid}</p></li>
-        <li><a class="dropdown-item" href="#">Manage Your Account</a></li>
+        <li><a class="dropdown-item" onClick={()=>Update(localStorage.getItem('uidd'))}>Manage Your Account</a></li>
         <li><hr class="dropdown-divider"/></li>
         <li><a class="dropdown-item" href="#">{localStorage.getItem('access_token') ?
             <li class="nav-item">  

@@ -71,10 +71,10 @@ export default function Manage(){
 		 password:password,
     }
     console.log(data)
-        axios.put('http://127.0.0.1:8000/update/'+id +'/',data)
+        axios.put('http://127.0.0.1:8000/update/'+id+'/',data)
             .then(res=>{
                console.log(res.data)
-			   history('/display');
+			   history('/exam_dashboard')
         }).catch(err=>console.error(err))
     }
     function Userhandle(e){
